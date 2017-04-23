@@ -1,0 +1,42 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+
+  background-color: #2B2B2B;
+
+  font-family: DejaVu Sans;
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+.no-select-text {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+.footer_area {
+  width: 100%;
+  height: 35px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+}
