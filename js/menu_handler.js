@@ -10,6 +10,7 @@ function about_button_clicked(id) {
     return true;
   }
   if((id.split('_').length > 1) && (id.split('_')[1] === 'about')){
+    clear_content_area();
     return true;
   }
   return false;
@@ -34,8 +35,7 @@ function entry_menu_to_second() {
       'margin-top': '-' + $(".js-main-container").height() + 'px'
   }, 1250, function() {
     //menu do segundo menu -> fade in
-    container_fade_in("js-second-nav-wrapper");
-    container_fade_in("js-content-container");
+    container_fade_in("js-second-container");
   });
 };
 
@@ -45,9 +45,9 @@ function clear_content_area() {
 
 function load_new_content(content) {
   $.get("content/" + content + ".html", function(data){
-    $(".js-content-area").html(data);
+    $(".js-content-area").hide().append(data).fadeTo("slow", 1);
   });
-}
+};
 
 $(document).ready(function() {
 
@@ -64,7 +64,6 @@ $(document).ready(function() {
       clear_content_area();
       if(id_elem.split('_').length > 1) {
         load_new_content(id_elem.split('_')[1]);
-        container_fade_in("js-content-container");
       }
       else {
         load_new_content(id_elem);
