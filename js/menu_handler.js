@@ -1,4 +1,4 @@
-function initiate_svg() {
+function initiate_sequence() {
   $(".js-second-nav-wrapper").empty();
   $(".js-second-nav-wrapper").addClass('js-initiate-sequence');
   //criar svg
@@ -58,7 +58,7 @@ $(document).ready(function() {
     id_elem = $(this).attr('id');
 
     if(about_button_clicked(id_elem)) {
-      initiate_svg();
+      initiate_sequence();
     }
     else {
       clear_content_area();
@@ -66,6 +66,7 @@ $(document).ready(function() {
         load_new_content(id_elem.split('_')[1]);
       }
       else {
+        container_fade_in("js-second-nav-wrapper");
         load_new_content(id_elem);
       }
     }
