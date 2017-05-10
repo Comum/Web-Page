@@ -1,0 +1,43 @@
+#contacts_container {
+  margin-top: 25px;
+}
+
+.NoList {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.NoList--contacts .NoList--contacts--item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 25px;
+}
+
+.link--myEmail {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.link--myEmail:hover {
+    text-decoration: underline;
+}
+
+.Icon {
+  width: 53.33px;
+  height: 53.33px;
+  display: inline-block;
+}
+
+.Icon--linkedin {
+  background-image: url("../Images/linkedin.svg");
+}
+
+.Icon--linkedin:hover {
+  background-image: url("../Images/linkedin_hover.svg");
+  transition: background-image ease 0.2s
+}
