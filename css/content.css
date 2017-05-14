@@ -3,8 +3,18 @@
   height: 100%;
 
   color: white;
+}
 
+.content_container--contacts {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.content_container--projects {
+  display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
