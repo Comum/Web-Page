@@ -1,14 +1,32 @@
 [
   {
-    "project_name": "Majo Energy Audit",
-    "company_name": "MAJO"
+    "company_name": "ESN Porto",
+    "companay_image": "esn_porto.png",
+    "projects": [
+      {
+        "project_name": "Buddy System"
+      }
+    ]
   },
   {
-    "project_name": "Majo Managment Plaform",
-    "company_name": "MAJO"
+    "company_name": "MAJO",
+    "companay_image": "majo.png",
+    "projects": [
+      {
+        "project_name": "Majo Energy Audit"
+      },
+      {
+        "project_name": "Majo Managment Plaform"
+      }
+    ]
   },
   {
-    "project_name": "Delhaize",
-    "company_name": "This Place"
+    "company_name": "This Place",
+    "companay_image": "this_place.png",
+    "projects": [
+      {
+        "project_name": "Delhaize"
+      }
+    ]
   }
 ]
