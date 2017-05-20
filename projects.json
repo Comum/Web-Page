@@ -2,6 +2,7 @@
   {
     "company_name": "ESN Porto",
     "companay_image": "esn_porto.png",
+    "company_id": "comp_esnporto",
     "projects": [
       {
         "project_name": "Buddy System"
@@ -11,6 +12,7 @@
   {
     "company_name": "MAJO",
     "companay_image": "majo.png",
+    "company_id": "comp_majo",
     "projects": [
       {
         "project_name": "Majo Energy Audit"
@@ -23,6 +25,7 @@
   {
     "company_name": "This Place",
     "companay_image": "this_place.png",
+    "company_id": "comp_thisplace",
     "projects": [
       {
         "project_name": "Delhaize"
