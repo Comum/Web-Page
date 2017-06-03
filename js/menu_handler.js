@@ -1,6 +1,7 @@
 function initiate_sequence() {
   $(".js-second-nav-wrapper").empty();
   $(".js-second-nav-wrapper").addClass('js-initiate-sequence');
+  
   //criar svg
 };
 
@@ -9,10 +10,12 @@ function about_button_clicked(id) {
   if(id === 'about') {
     return true;
   }
+
   if((id.split('_').length > 1) && (id.split('_')[1] === 'about')){
     clear_content_area();
     return true;
   }
+
   return false;
 };
 
