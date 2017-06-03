@@ -6,11 +6,11 @@ function initiate_company_values(company_info) {
   var html;
 
   $(".js-company_area-name").append(company_info.company_name);
-  $(".js-company_area-logo").prepend('<a href="' + company_info.company_site + '" target="_blank"><img width="' + company_info.companay_image_width + '" height="' + company_info.companay_image_height + '" src="Images/' + company_info.companay_image.trim() + '" /></a>')
+  $(".js-company_area-logo").prepend('<a href="' + company_info.company_site + '" target="_blank"><img width="' + company_info.companay_image_width + '" height="' + company_info.companay_image_height + '" src="images/' + company_info.companay_image.trim() + '" /></a>')
 
   company_info.projects.forEach(function (proj) {
     if (proj.project_images[0]) {
-        html = '<div class="company_area--projects--project_area"><div class="company_area--projects--project_img"><img src="Images/' + proj.project_images[0] + '" class="company_area--projects--project_img_properties"/></div><div class="company_area--projects--project_nome">' + proj.project_name + '</div></div>';
+        html = '<div class="company_area--projects--project_area"><div class="company_area--projects--project_img"><img src="images/' + proj.project_images[0] + '" class="company_area--projects--project_img_properties"/></div><div class="company_area--projects--project_nome">' + proj.project_name + '</div></div>';
     }
     else {
       html = '<div class="company_area--projects--project_area"><div class="company_area--projects--project_img_empty">Images Not Availabe</div><div class="company_area--projects--project_nome">' + proj.project_name + '</div></div>';

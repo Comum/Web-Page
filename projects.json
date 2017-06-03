@@ -8,23 +8,35 @@
     "company_site": "http://www.esnporto.org",
     "projects": [
       {
-        "project_name": "Buddy System"
+        "project_name": "Buddy System",
+        "project_images": [
+
+        ]
       }
     ]
   },
   {
     "company_name": "MAJO",
-    "companay_image": "majo.png",
+    "companay_image": "Majo.png",
     "companay_image_width": "110",
     "companay_image_height": "66",
     "company_id": "comp_majo",
     "company_site": "http://www.majo.pt",
     "projects": [
       {
-        "project_name": "Majo Energy Audit"
+        "project_name": "Majo Energy Audit",
+        "project_images": [
+          "Majo_majoenergyaudit_0.PNG",
+          "Majo_majoenergyaudit_1.PNG",
+          "Majo_majoenergyaudit_2.PNG",
+          "Majo_majoenergyaudit_3.PNG"
+        ]
       },
       {
-        "project_name": "Majo Managment Plaform"
+        "project_name": "Majo Managment Plaform",
+        "project_images": [
+
+        ]
       }
     ]
   },
@@ -37,7 +49,12 @@
     "company_site": "http://www.thisplace.com",
     "projects": [
       {
-        "project_name": "Delhaize"
+        "project_name": "Delhaize",
+        "project_images": [
+          "ThisPlace_Delhaize_0.PNG",
+          "ThisPlace_Delhaize_1.PNG",
+          "ThisPlace_Delhaize_2.PNG"
+        ]
       }
     ]
   }
