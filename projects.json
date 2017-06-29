@@ -8,6 +8,7 @@
     "company_site": "http://www.esnporto.org",
     "projects": [
       {
+        "project_id": "comp_esnporto-1",
         "project_name": "Buddy System",
         "project_images": [
 
@@ -24,6 +25,7 @@
     "company_site": "http://www.majo.pt",
     "projects": [
       {
+        "project_id": "comp_majo-1",
         "project_name": "Majo Energy Audit",
         "project_images": [
           "Majo_majoenergyaudit_0.PNG",
@@ -33,6 +35,7 @@
         ]
       },
       {
+        "project_id": "comp_majo-2",
         "project_name": "Majo Managment Plaform",
         "project_images": [
 
@@ -49,6 +52,7 @@
     "company_site": "http://www.thisplace.com",
     "projects": [
       {
+        "project_id": "comp_thisplace_1",
         "project_name": "Delhaize",
         "project_images": [
           "ThisPlace_Delhaize_0.PNG",
