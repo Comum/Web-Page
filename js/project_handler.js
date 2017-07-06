@@ -2,22 +2,41 @@ function clear_container_info() {
   $(".js-content-container").empty();
 };
 
+function popuate_proj_info(data, proj) {
+  $(".js-content-container").append(data);
+
+  
+
+  $(".js-content-container").fadeTo("slow", 1);
+}
+
+function load_proj_template(proj) {
+  $.get("content/project_info.html", function(data){
+    $(".js-content-container").fadeTo("slow", 0, function () {
+      $(".js-content-container")
+        .empty()
+        .hide();
+
+      popuate_proj_info(data, proj);
+    });
+  });
+}
+
 function load_project_info() {
   var company = $(this).attr('id').split('-')[0],
-      proj_id = $(this).attr('id');
+      proj_id = $(this).attr('id'),
+      info_proj;
 
-  console.info('company', company);
   $.getJSON("projects.json", function(data) {
     $.each(data, function( key, val ) {
       if (company === this.company_id) {
-        // problemas a sacar informacao de cada projecto
-        
-        // $.each(this, function(key, val) {
-        //   console.log(this.project_id);
-        //   if (this.project_id === proj_id) {
-        //     console.log(this);
-        //   }
-        // });
+        info_proj = this.projects.
+                      filter(function(proj) {
+                        if (proj.project_id == proj_id) {
+                          return proj;
+                        }
+                      });
+        load_proj_template(info_proj);
       }
     });
   });
