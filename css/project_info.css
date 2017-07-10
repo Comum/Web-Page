@@ -30,6 +30,8 @@
   min-width: 100px;
   max-width: 250px;
 
+  padding: 0 8px;
+
   float: left;
 }
 
@@ -58,7 +60,9 @@
   width: 100%;
   height: calc(60% - 22px);
 
-  padding: 8px;
+  margin: 8px 0;
+
+  text-align: justify;
 }
 
 .projectInfo--description--secondTitle {

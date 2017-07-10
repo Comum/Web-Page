@@ -4,8 +4,8 @@ function clear_container_info() {
 
 function popuate_proj_info(data, proj) {
   $(".js-content-container").append(data);
-
-  
+console.log(proj);
+  $(".js-project-info-content").html('&nbsp;&nbsp;' + proj[0].project_description);
 
   $(".js-content-container").fadeTo("slow", 1);
 }

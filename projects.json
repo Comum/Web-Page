@@ -10,8 +10,16 @@
       {
         "project_id": "comp_esnporto-1",
         "project_name": "Buddy System",
+        "project_description": "Buddy System is a Web App that connects two users with each other and sends an email to each user with information about the other user.",
         "project_images": [
 
+        ],
+        "project_technologies": [
+          "PHP",
+          "MySQL",
+          "HTML",
+          "CSS",
+          "JavaSript"
         ]
       }
     ]
@@ -27,18 +35,37 @@
       {
         "project_id": "comp_majo-1",
         "project_name": "Majo Energy Audit",
+        "project_description": "Majo Energy Audit is a managment platform that allows users to convert enery values into monetary values. In a first instance it was working to convert energy produced by mini hydric centrals.",
         "project_images": [
           "Majo_majoenergyaudit_0.PNG",
           "Majo_majoenergyaudit_1.PNG",
           "Majo_majoenergyaudit_2.PNG",
           "Majo_majoenergyaudit_3.PNG"
+        ],
+        "project_technologies": [
+          "PHP",
+          "HTML",
+          "CSS",
+          "MySQL",
+          "JavaSript",
+          "jQuery"
         ]
       },
       {
         "project_id": "comp_majo-2",
         "project_name": "Majo Managment Plaform",
+        "project_description": "Majo Managment Platform is a managment tool to help users receive tasks and manage projects. It is based in Trello and its work flow is based on MAJO's way of working.",
         "project_images": [
 
+        ],
+        "project_technologies": [
+          "PHP",
+          "HTML",
+          "CSS",
+          "MySQL",
+          "MSSQL",
+          "JavaSript",
+          "jQuery"
         ]
       }
     ]
@@ -54,10 +81,19 @@
       {
         "project_id": "comp_thisplace_1",
         "project_name": "Delhaize",
+        "project_description": "Web store for the supermarket chain Delhaize.",
         "project_images": [
           "ThisPlace_Delhaize_0.PNG",
           "ThisPlace_Delhaize_1.PNG",
           "ThisPlace_Delhaize_2.PNG"
+        ],
+        "project_technologies": [
+          "NodeJS",
+          "Grunt",
+          "JavaSript",
+          "jQuery",
+          "HTML",
+          "CSS/Less"
         ]
       }
     ]
