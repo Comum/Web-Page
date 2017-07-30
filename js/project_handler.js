@@ -3,9 +3,18 @@ function clear_container_info() {
 };
 
 function popuate_proj_info(data, proj) {
+  var html;
+
   $(".js-content-container").append(data);
-console.log(proj);
   $(".js-project-info-content").html('&nbsp;&nbsp;' + proj[0].project_description);
+  proj[0].project_technologies.forEach(function (tech) {
+    html = '<span class="projectInfo--technologies--lang">' + tech + '</span>';
+    $('.js-project-info-technologies').append(html);
+  });
+
+  console.log(proj[0].project_images[0]);
+  $('.js-project-image-area').css('background-image', 'url(Images/' + proj[0].project_images[0] + ')');
+  // $('#divID').css("background-image", "url(/myimage.jpg)");
 
   $(".js-content-container").fadeTo("slow", 1);
 }
@@ -29,6 +38,7 @@ function load_project_info() {
 
   $.getJSON("projects.json", function(data) {
     $.each(data, function( key, val ) {
+      console.log(company + ' ' + this.company_id);
       if (company === this.company_id) {
         info_proj = this.projects.
                       filter(function(proj) {

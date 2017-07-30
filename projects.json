@@ -79,7 +79,7 @@
     "company_site": "http://www.thisplace.com",
     "projects": [
       {
-        "project_id": "comp_thisplace_1",
+        "project_id": "comp_thisplace-1",
         "project_name": "Delhaize",
         "project_description": "Web store for the supermarket chain Delhaize.",
         "project_images": [
