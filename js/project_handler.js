@@ -1,22 +1,58 @@
 function clear_container_info() {
-  $(".js-content-container").empty();
+  $('.js-content-container').empty();
 };
 
-function popuate_proj_info(data, proj) {
-  var html;
+function changeBackgroundAnimation(image, number) {
+  $('.js-project-image-area')
+    .css('background-image', 'url(' + image + ')')
+    .attr('data-image-number', number);
+}
 
-  $(".js-content-container").append(data);
-  $(".js-project-info-content").html('&nbsp;&nbsp;' + proj[0].project_description);
+function onImageArrowClick() {
+  var arrowDirection = 0,
+      nextImage = '',
+      $imageInfo = $('.js-project-image-area'),
+      nextImageNumber = $imageInfo.attr('data-image-number');
+
+  if ($(this).hasClass('projectInfo--contentContainer--rightArrow')) {
+    arrowDirection = 1;
+  } else if ($(this).hasClass('projectInfo--contentContainer--leftArrow')) {
+    arrowDirection = 2;
+  }
+
+  if ($imageInfo.attr('data-image-number') == 0 && arrowDirection == 2) {
+    nextImageNumber = $imageInfo.attr('data-image-count') - 1;
+  } else if ($imageInfo.attr('data-image-number') == ($imageInfo.attr('data-image-count') - 1) && arrowDirection == 1) {
+    nextImageNumber = 0;
+  } else if (arrowDirection == 2) {
+    nextImageNumber--;
+  } else if (arrowDirection == 1) {
+    nextImageNumber++;
+  }
+
+  nextImage = 'Images/' + $imageInfo.data('imageName') + nextImageNumber + '.png';
+  changeBackgroundAnimation(nextImage, nextImageNumber);
+}
+
+function popuate_proj_info(data, proj) {
+  var html,
+      imageName;
+
+  $('.js-content-container').append(data);
+  $('.js-project-info-content').html('&nbsp;&nbsp;' + proj[0].project_description);
   proj[0].project_technologies.forEach(function (tech) {
     html = '<span class="projectInfo--technologies--lang">' + tech + '</span>';
     $('.js-project-info-technologies').append(html);
   });
 
-  console.log(proj[0].project_images[0]);
-  $('.js-project-image-area').css('background-image', 'url(Images/' + proj[0].project_images[0] + ')');
-  // $('#divID').css("background-image", "url(/myimage.jpg)");
+  imageName = proj[0].project_images[0].split('.')[0].slice(0, -1);
 
-  $(".js-content-container").fadeTo("slow", 1);
+  $('.js-project-image-area')
+    .css('background-image', 'url(Images/' + proj[0].project_images[0] + ')')
+    .attr('data-image-count', proj[0].project_images.length)
+    .attr('data-image-name', imageName);
+
+  $('.js-content-container').fadeTo('slow', 1);
 }
 
 function load_proj_template(proj) {
@@ -27,6 +63,8 @@ function load_proj_template(proj) {
         .hide();
 
       popuate_proj_info(data, proj);
+
+      $('.js-image-arrow').on('click', onImageArrowClick);
     });
   });
 }
@@ -38,7 +76,6 @@ function load_project_info() {
 
   $.getJSON("projects.json", function(data) {
     $.each(data, function( key, val ) {
-      console.log(company + ' ' + this.company_id);
       if (company === this.company_id) {
         info_proj = this.projects.
                       filter(function(proj) {
