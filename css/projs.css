@@ -144,3 +144,23 @@
   height: 100%;
   object-fit: contain;
 }
+
+.no_company_logo {
+  width: 110px;
+  height: 50px;
+
+  font-size: 18px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.no_company_logo:hover {
+  outline: 2px solid #363636;
+}
+
+.noImageProj {
+  margin-left: 0px !important;
+}

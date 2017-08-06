@@ -6,6 +6,10 @@
   cursor: default;
 }
 
+.color-white {
+  color: white;
+}
+
 .no-select-text {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */

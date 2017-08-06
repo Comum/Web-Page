@@ -15,11 +15,26 @@
 
         ],
         "project_technologies": [
-          "PHP",
-          "MySQL",
-          "HTML",
-          "CSS",
-          "JavaSript"
+          {
+            "name": "PHP",
+            "icon": "icon_php.svg"
+          },
+          {
+            "name": "MySQL",
+            "icon": "icon_mysql.svg"
+          },
+          {
+            "name": "HTML5",
+            "icon": "icon_html5.svg"
+          },
+          {
+            "name": "CSS3",
+            "icon": "icon_css3.svg"
+          },
+          {
+            "name": "JavaSript",
+            "icon": "icon_javascript.svg"
+          }
         ]
       }
     ]
@@ -43,12 +58,30 @@
           "Majo_majoenergyaudit_3.PNG"
         ],
         "project_technologies": [
-          "PHP",
-          "HTML",
-          "CSS",
-          "MySQL",
-          "JavaSript",
-          "jQuery"
+          {
+            "name": "PHP",
+            "icon": "icon_php.svg"
+          },
+          {
+            "name": "HTML5",
+            "icon": "icon_html5.svg"
+          },
+          {
+            "name": "CSS",
+            "icon": "icon_css3.svg"
+          },
+          {
+            "name": "MySQL",
+            "icon": "icon_mysql.svg"
+          },
+          {
+            "name": "JavaSript",
+            "icon": "icon_javascript.svg"
+          },
+          {
+            "name": "jQuery",
+            "icon": "icon_jquery.svg"
+          }
         ]
       },
       {
@@ -59,13 +92,34 @@
 
         ],
         "project_technologies": [
-          "PHP",
-          "HTML",
-          "CSS",
-          "MySQL",
-          "MSSQL",
-          "JavaSript",
-          "jQuery"
+          {
+            "name": "PHP",
+            "icon": "icon_php.svg"
+          },
+          {
+            "name": "HTML5",
+            "icon": "icon_html5.svg"
+          },
+          {
+            "name": "CSS3",
+            "icon": "icon_css3.svg"
+          },
+          {
+            "name": "MySQL",
+            "icon": "icon_mysql.svg"
+          },
+          {
+            "name": "MSSQL",
+            "icon": "icon_mssql.svg"
+          },
+          {
+            "name": "JavaSript",
+            "icon": "icon_javascript.svg"
+          },
+          {
+            "name": "jQuery",
+            "icon": "icon_jquery.svg"
+          }
         ]
       }
     ]
@@ -88,12 +142,89 @@
           "ThisPlace_Delhaize_2.PNG"
         ],
         "project_technologies": [
-          "NodeJS",
-          "Grunt",
-          "JavaSript",
-          "jQuery",
-          "HTML",
-          "CSS/Less"
+          {
+            "name": "NodeJS",
+            "icon": "icon_nodejs.svg"
+          },
+          {
+            "name": "Grunt",
+            "icon": "icon_grunt.svg"
+          },
+          {
+            "name": "JavaSript",
+            "icon": "icon_javascript.svg"
+          },
+          {
+            "name": "jQuery",
+            "icon": "icon_jquery.svg"
+          },
+          {
+            "name": "HTML5",
+            "icon": "icon_html5.svg"
+          },
+          {
+            "name": "CSS/Less",
+            "icon": "icon_less.svg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "company_name": "Personal Projects",
+    "companay_image": "",
+    "companay_image_width": "",
+    "companay_image_height": "",
+    "company_id": "comp_personal",
+    "company_site": "https://web.fe.up.pt/~ee08112/",
+    "projects": [
+      {
+        "project_id": "comp_personal-1",
+        "project_name": "BreakTheBlock Hackathon",
+        "project_description": "#breaktheblock Hackathon was an event created by Simply Business that challenged the participants to create a solution for insurance using block chain. More information at: <a href='http://breaktheblock.simplybusiness.co.uk/' class='color-white' target='_blank'>Simply Business</a> <br>&nbsp;&nbsp;Our team presented an insurance solution that allowed to insure an event against weather misfortune, but the person that applied to this insurance could only claim his or her prize if he or she were present at the place of the event. We also had a Raspberry Pi that simulated a node in a network of sensors that would detect weather misfortune, such as rain, for example. The user would also be notified by text message with a link to check his or her current location to make sure a claim is possible.",
+        "project_images": [
+          "personal_breaktheblock_0.PNG",
+          "personal_breaktheblock_1.PNG",
+          "personal_breaktheblock_2.PNG",
+          "personal_breaktheblock_3.PNG"
+        ],
+        "project_technologies": [
+          {
+            "name": "Ethereum",
+            "icon": "icon_ethereum.svg"
+          },
+          {
+            "name": "Solidity",
+            "icon": "icon_solidity.svg"
+          },
+          {
+            "name": "NodeJS",
+            "icon": "icon_nodejs.svg"
+          },
+          {
+            "name": "HTML5",
+            "icon": "icon_html5.svg"
+          },
+          {
+            "name": "CSS/SCSS",
+            "icon": "icon_scss.svg"
+          },
+          {
+            "name": "JavaScript",
+            "icon": "icon_javascript.svg"
+          },
+          {
+            "name": "AngularJS",
+            "icon": "icon_angular.svg"
+          },
+          {
+            "name": "PHP",
+            "icon": "icon_php.svg"
+          },
+          {
+            "name": "Python",
+            "icon": "icon_python.svg"
+          }
         ]
       }
     ]

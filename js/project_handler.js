@@ -67,9 +67,10 @@ function popuate_proj_info(data, proj) {
 
   $('.js-content-container').append(data);
   $('.js-project-info-content').html('&nbsp;&nbsp;' + proj[0].project_description);
-  proj[0].project_technologies.forEach(function (tech) {
-    html = '<span class="projectInfo--technologies--lang">' + tech + '</span>';
+  proj[0].project_technologies.forEach(function (tech, index) {
+    html = '<div class="projectInfo--technologies--area"><div id="icon_' + index + '" class="projectInfo--technologies--icon js-tech-lang-icon"></div><div class="projectInfo--technologies--lang">' + tech.name + '</div></div>';
     $('.js-project-info-technologies').append(html);
+    $('#icon_' + index).css('background-image', 'url(Images/' + tech.icon + ')');
   });
 
   imageName = proj[0].project_images[0].split('.')[0].slice(0, -1);
@@ -120,7 +121,11 @@ function initiate_company_values(company_info) {
   var html;
 
   $(".js-company_area-name").append(company_info.company_name);
-  $(".js-company_area-logo").prepend('<a href="' + company_info.company_site + '" target="_blank"><img width="' + company_info.companay_image_width + '" height="' + company_info.companay_image_height + '" src="Images/' + company_info.companay_image.trim() + '" /></a>')
+  if (company_info.companay_image.trim().length > 0) {
+      $(".js-company_area-logo").prepend('<a href="' + company_info.company_site + '" target="_blank"><img width="' + company_info.companay_image_width + '" height="' + company_info.companay_image_height + '" src="Images/' + company_info.companay_image.trim() + '" /></a>');
+  } else {
+    $(".js-company_area-name").addClass('noImageProj');
+  }
 
   company_info.projects.forEach(function (proj) {
     if (proj.project_images[0]) {
