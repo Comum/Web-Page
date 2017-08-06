@@ -2,10 +2,37 @@ function clear_container_info() {
   $('.js-content-container').empty();
 };
 
+function hideOverlayImages() {
+  $(".js-image-bottomOverlay").animate({
+       bottom: '-50%'
+    }, { duration: 750, queue: false });
+
+    $(".js-image-topOverlay").animate({
+       top: '-50%'
+    }, { duration: 750, queue: false });
+}
+
+function changeBackgroundImageWithAnimation(image, number) {
+  setTimeout(function () {
+    $('.js-project-image-area')
+      .css('background-image', 'url(' + image + ')')
+      .attr('data-image-number', number);
+
+      hideOverlayImages()
+  }, 750);
+}
+
 function changeBackgroundAnimation(image, number) {
-  $('.js-project-image-area')
-    .css('background-image', 'url(' + image + ')')
-    .attr('data-image-number', number);
+
+  $(".js-image-bottomOverlay").animate({
+       bottom: 0
+    }, { duration: 750, queue: false });
+
+    $(".js-image-topOverlay").animate({
+       top: 0
+    }, { duration: 750, queue: false }, changeBackgroundImageWithAnimation(image, number));
+
+    //setTimeout(changeBackgroundImageWithAnimation(), 750);
 }
 
 function onImageArrowClick() {
