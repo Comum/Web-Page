@@ -52,10 +52,10 @@
         "project_name": "Majo Energy Audit",
         "project_description": "Majo Energy Audit is a managment platform that allows users to convert enery values into monetary values. In a first instance it was working to convert energy produced by mini hydric centrals.",
         "project_images": [
-          "Majo_majoenergyaudit_0.PNG",
-          "Majo_majoenergyaudit_1.PNG",
-          "Majo_majoenergyaudit_2.PNG",
-          "Majo_majoenergyaudit_3.PNG"
+          "Majo_majoenergyaudit_0.png",
+          "Majo_majoenergyaudit_1.png",
+          "Majo_majoenergyaudit_2.png",
+          "Majo_majoenergyaudit_3.png"
         ],
         "project_technologies": [
           {
@@ -137,9 +137,9 @@
         "project_name": "Delhaize",
         "project_description": "Web store for the supermarket chain Delhaize.",
         "project_images": [
-          "ThisPlace_Delhaize_0.PNG",
-          "ThisPlace_Delhaize_1.PNG",
-          "ThisPlace_Delhaize_2.PNG"
+          "ThisPlace_Delhaize_0.png",
+          "ThisPlace_Delhaize_1.png",
+          "ThisPlace_Delhaize_2.png"
         ],
         "project_technologies": [
           {
@@ -183,10 +183,10 @@
         "project_name": "BreakTheBlock Hackathon",
         "project_description": "#breaktheblock Hackathon was an event created by Simply Business that challenged the participants to create a solution for insurance using block chain. More information at: <a href='http://breaktheblock.simplybusiness.co.uk/' class='color-white' target='_blank'>Simply Business</a> <br>&nbsp;&nbsp;Our team presented an insurance solution that allowed to insure an event against weather misfortune, but the person that applied to this insurance could only claim his or her prize if he or she were present at the place of the event. We also had a Raspberry Pi that simulated a node in a network of sensors that would detect weather misfortune, such as rain, for example. The user would also be notified by text message with a link to check his or her current location to make sure a claim is possible.",
         "project_images": [
-          "personal_breaktheblock_0.PNG",
-          "personal_breaktheblock_1.PNG",
-          "personal_breaktheblock_2.PNG",
-          "personal_breaktheblock_3.PNG"
+          "personal_breaktheblock_0.png",
+          "personal_breaktheblock_1.png",
+          "personal_breaktheblock_2.png",
+          "personal_breaktheblock_3.png"
         ],
         "project_technologies": [
           {
