@@ -66,6 +66,7 @@ function popuate_proj_info(data, proj) {
       imageName;
 
   $('.js-content-container').append(data);
+  $('.js-project-info-name').text(proj[0].project_name);
   $('.js-project-info-content').html('&nbsp;&nbsp;' + proj[0].project_description);
   proj[0].project_technologies.forEach(function (tech, index) {
     html = '<div class="projectInfo--technologies--area"><div id="icon_' + index + '" class="projectInfo--technologies--icon js-tech-lang-icon"></div><div class="projectInfo--technologies--lang">' + tech.name + '</div></div>';
