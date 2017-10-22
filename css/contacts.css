@@ -41,3 +41,16 @@
   background-image: url("../Images/linkedin_hover.svg");
   transition: background-image ease 0.2s
 }
+
+.Icon--github {
+  background-image: url("../Images/github_grey.svg");
+  background-position: center;
+  background-size: contain;
+}
+
+.Icon--github:hover {
+  background-image: url("../Images/github_black.svg");
+  background-position: center;
+  background-size: contain;
+  transition: background-image ease 0.2s
+}
