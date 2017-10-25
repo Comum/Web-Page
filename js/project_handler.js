@@ -3,11 +3,11 @@ function clear_container_info() {
 };
 
 function hideOverlayImages() {
-  $(".js-image-bottomOverlay").animate({
+  $('.js-image-bottomOverlay').animate({
        bottom: '-50%'
     }, { duration: 750, queue: false });
 
-    $(".js-image-topOverlay").animate({
+    $('.js-image-topOverlay').animate({
        top: '-50%'
     }, { duration: 750, queue: false });
 }
@@ -24,11 +24,11 @@ function changeBackgroundImageWithAnimation(image, number) {
 
 function changeBackgroundAnimation(image, number) {
 
-  $(".js-image-bottomOverlay").animate({
+  $('.js-image-bottomOverlay').animate({
        bottom: 0
     }, { duration: 750, queue: false });
 
-    $(".js-image-topOverlay").animate({
+    $('.js-image-topOverlay').animate({
        top: 0
     }, { duration: 750, queue: false }, changeBackgroundImageWithAnimation(image, number));
 
@@ -85,9 +85,9 @@ function popuate_proj_info(data, proj) {
 }
 
 function load_proj_template(proj) {
-  $.get("content/project_info.html", function(data){
-    $(".js-content-container").fadeTo("slow", 0, function () {
-      $(".js-content-container")
+  $.get('content/project_info.html', function(data){
+    $('.js-content-container').fadeTo('slow', 0, function () {
+      $('.js-content-container')
         .empty()
         .hide();
 
@@ -103,7 +103,7 @@ function load_project_info() {
       proj_id = $(this).attr('id'),
       info_proj;
 
-  $.getJSON("projects.json", function(data) {
+  $.getJSON('projects.json', function(data) {
     $.each(data, function( key, val ) {
       if (company === this.company_id) {
         info_proj = this.projects.
@@ -121,11 +121,11 @@ function load_project_info() {
 function initiate_company_values(company_info) {
   var html;
 
-  $(".js-company_area-name").append(company_info.company_name);
+  $('.js-company_area-name').append(company_info.company_name);
   if (company_info.companay_image.trim().length > 0) {
-      $(".js-company_area-logo").prepend('<a href="' + company_info.company_site + '" target="_blank"><img width="' + company_info.companay_image_width + '" height="' + company_info.companay_image_height + '" src="Images/' + company_info.companay_image.trim() + '" /></a>');
+      $('.js-company_area-logo').prepend('<a href="' + company_info.company_site + '" target="_blank"><img width="' + company_info.companay_image_width + '" height="' + company_info.companay_image_height + '" src="Images/' + company_info.companay_image.trim() + '" /></a>');
   } else {
-    $(".js-company_area-name").addClass('noImageProj');
+    $('.js-company_area-name').addClass('noImageProj');
   }
 
   company_info.projects.forEach(function (proj) {
@@ -136,29 +136,29 @@ function initiate_company_values(company_info) {
       html = '<div class="company_area--projects--project_area"><div class="company_area--projects--project_img_empty">Images Not Availabe</div><div class="company_area--projects--project_nome">' + proj.project_name + '</div></div>';
     }
 
-    $(".js-company-projects").prepend(html);
+    $('.js-company-projects').prepend(html);
   });
 };
 
 function load_new_info(company_info) {
 
-  $.get("content/company_info.html", function(data){
-    $(".js-content-container").hide().append(data);
+  $.get('content/company_info.html', function(data){
+    $('.js-content-container').hide().append(data);
 
     initiate_company_values(company_info);
 
     //this function can only run after initiate_company_values() is finished loading
-    $(".js-content-container").fadeTo("slow", 1);
-    $(".js-project-info").unbind('click');
-    $(".js-project-info").on('click', load_project_info);
+    $('.js-content-container').fadeTo('slow', 1);
+    $('.js-project-info').unbind('click');
+    $('.js-project-info').on('click', load_project_info);
   });
 };
 
 function proj_clicked() {
-  $(".js-content-area").on("click", ".js-company-logo", function () {
+  $('.js-content-area').on('click', '.js-company-logo', function () {
     var comp_id = $(this).attr('id');
 
-    $.getJSON("projects.json", function(data) {
+    $.getJSON('projects.json', function(data) {
       $.each(data, function( key, val ) {
         if (comp_id === this.company_id) {
           clear_container_info();
