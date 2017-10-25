@@ -46,9 +46,37 @@ function clear_content_area() {
   $(".js-content-area").empty();
 };
 
+function loadContactsPage(info, quote) {
+  var $el = $(".js-content-area");
+
+  $el.hide().append(info);
+  $el.find('.js-quote-block').text(quote);
+  $el.fadeTo('show', 1);
+}
+
+function getPageWithQuote(info) {
+  var quote;
+
+  $.ajax({
+    url: 'http://cors-proxy.htmldriven.com/?url=http://thoughtsoncoding.com/api/1.0/random.json',
+    error: function () {
+      quote = 'Insert cheeky quote here.';
+      loadContactsPage(info, quote)
+    },
+    success: function (data) {
+      quote = JSON.parse(data.body).quote;
+      loadContactsPage(info, quote);
+    }
+  });
+}
+
 function load_new_content(content) {
   $.get("content/" + content + ".html", function(data){
-    $(".js-content-area").hide().append(data).fadeTo("slow", 1);
+    if (content === 'contacts') {
+      getPageWithQuote(data);
+    } else {
+      $(".js-content-area").hide().append(data).fadeTo("slow", 1);
+    }
   });
 };
 

@@ -54,3 +54,10 @@
   background-size: contain;
   transition: background-image ease 0.2s
 }
+
+.NoList--contacts--quote {
+  font-style: italic;
+  text-align: center;
+
+  margin: 0 8px;
+}
