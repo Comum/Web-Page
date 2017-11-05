@@ -14,39 +14,79 @@
   align-items: center;
 }
 
-.projectInfo--content {
-  width: 100%;
-  height: calc(100% - 40px);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media only screen and (max-width: 665px) {
+  .projectInfo--content {
+    width: 100%;
+    height: calc(100% - 40px);
+  
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: center;
+  }
 }
 
-.projectInfo--content--description {
-  width: 30%;
-  height: 100%;
-
-  min-width: 100px;
-  max-width: 250px;
-
-  padding: 0 8px;
-
-  float: left;
+@media only screen and (min-width: 665px) {
+  .projectInfo--content {
+    width: 100%;
+    height: calc(100% - 40px);
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
-.projectInfo--content--image {
-  width: 70%;
-  height: 100%;
+@media only screen and (max-width: 665px) {
+  .projectInfo--content--description {
+    width: calc(100% - 16px);
+    height: calc(100% - 150px);
 
-  min-width: calc(100% - 250px);
-  max-width: calc(100% - 100px);
+    margin: 0 8px;
+  }
+}
 
-  float: left;
+@media only screen and (min-width: 665px) {
+  .projectInfo--content--description {
+    width: 30%;
+    height: 100%;
+  
+    min-width: 100px;
+    max-width: 250px;
+  
+    padding: 0 8px;
+  
+    float: left;
+  }
+}
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media only screen and (max-width: 665px) {
+  .projectInfo--content--image {
+    width: calc(100% - 16px);
+    height: 150px;
+
+    margin: 0 8px;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media only screen and (min-width: 665px) {
+  .projectInfo--content--image {
+    width: 70%;
+    height: 100%;
+  
+    min-width: calc(100% - 250px);
+    max-width: calc(100% - 100px);
+  
+    float: left;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .projectInfo--description--title {
@@ -60,17 +100,36 @@
     align-items: center;
 }
 
-.projectInfo--description--content {
-  width: calc(100% - 16px);
-  height: calc(60% - 38px);
+@media only screen and (max-width: 665px) {
+  .projectInfo--description--content {
+    width: calc(100% - 16px);
+    height: calc(60% - 38px);
 
-  margin: 8px 0;
-  padding: 0 8px;
+    max-height: 100px; 
+  
+    margin: 8px 0;
+    padding: 0 8px;
+  
+    text-align: justify;
+  
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
 
-  text-align: justify;
-
-  overflow-y: auto;
-  overflow-x: hidden;
+@media only screen and (min-width: 665px) {
+  .projectInfo--description--content {
+    width: calc(100% - 16px);
+    height: calc(60% - 38px);
+  
+    margin: 8px 0;
+    padding: 0 8px;
+  
+    text-align: justify;
+  
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 }
 
 .projectInfo--description--secondTitle {
@@ -82,12 +141,24 @@
   align-items: center;
 }
 
-.projectInfo--description--technologies {
+@media only screen and (max-width: 665px) {
+  .projectInfo--description--technologies {
+    width: 100%;
+    height: calc(100% - 160px);
+    min-height: 0px;
+
+    overflow-y: auto;
+  }
+}
+
+@media only screen and (min-width: 665px) {
+  .projectInfo--description--technologies {
     width: 100%;
     height: calc(40% - 22px);
     min-height: 0px;
 
     overflow-y: auto;
+  }
 }
 
 .projectInfo--technologies--area {
@@ -125,7 +196,7 @@
 @media only screen and (max-width: 665px) {
   .projectInfo--imageList--container {
     width: 250px;
-    height: 250px;
+    height: 150px;
   }
 
   .projectInfo--imageList--contentContainer {
@@ -133,7 +204,7 @@
     height: 125px;
 
     position: absolute;
-    top: 57px;
+    top: 8px;
     right: 28px;
   }
 }
