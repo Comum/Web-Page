@@ -40,6 +40,11 @@
     flex-direction: row;
     justify-content: flex-start;
   }
+
+  #content_area_container {
+    width: 100%;
+    height: calc(100% - 50px);
+  }
 }
 
 @media only screen and (min-width: 0px) and (max-width: 665px) {
@@ -71,6 +76,11 @@
     flex-direction: row;
     justify-content: center;
   }
+
+  #content_area_container {
+    width: 100%;
+    height: calc(100% - 100px);
+  }
 }
 
 #second_nome_reload {
@@ -93,20 +103,4 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-}
-
-@media only screen and (min-width: 665px) {
-
-  #content_area_container {
-    width: 100%;
-    height: calc(100% - 50px);
-  }
-}
-
-@media only screen and (min-width: 0px) and (max-width: 665px) {
-
-  #content_area_container {
-    width: 100%;
-    height: calc(100% - 100px);
-  }
 }
