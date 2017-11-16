@@ -339,3 +339,14 @@
 .projectInfo--contentContainer--bottomOverlay {
   bottom: -50%;
 }
+
+.projectInfo--description--inlineLink {
+  margin-top: 4px;
+  
+  color: white;
+  text-decoration: none;
+}
+
+.projectInfo--description--inlineLink:hover {
+  text-decoration: underline;
+}

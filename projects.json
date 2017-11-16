@@ -10,7 +10,7 @@
       {
         "project_id": "comp_esnporto-1",
         "project_name": "Buddy System",
-        "project_description": "Buddy System is a Web App that connects two users with each other and sends an email to each user with information about the other user.",
+        "project_description": "Buddy System is a Web App that connects two app members with each other and sends an email to each of them with information about the other user. It requires an user to make the attribution (non automonous attribution was part of the specs)",
         "project_images": [
 
         ],
@@ -50,7 +50,7 @@
       {
         "project_id": "comp_majo-1",
         "project_name": "Majo Energy Audit",
-        "project_description": "Majo Energy Audit is a managment platform that allows users to convert enery values into monetary values. In a first instance it was working to convert energy produced by mini hydric centrals.",
+        "project_description": "Majo Energy Audit is a managment platform that allows users to convert energy values into monetary values. In a first instance it was working to convert energy produced by mini hydric centrals.",
         "project_images": [
           "Majo_majoenergyaudit_0.png",
           "Majo_majoenergyaudit_1.png",
@@ -135,7 +135,7 @@
       {
         "project_id": "comp_thisplace-1",
         "project_name": "Delhaize",
-        "project_description": "Web store for the supermarket chain Delhaize.",
+        "project_description": "Front end work on the web store for the supermarket chain Delhaize.<br><br><a href='https://www.delhaize.be' class='projectInfo--description--inlineLink' target='_blank'>Delhaize.be</a><br><br><a href='https://www.ab.gr' class='projectInfo--description--inlineLink' target='_blank'>ab.gr</a><br><br><a href='https://www.maxi.rs' class='projectInfo--description--inlineLink' target='_blank'>Maxi.rs</a>",
         "project_images": [
           "ThisPlace_Delhaize_0.png",
           "ThisPlace_Delhaize_1.png",
