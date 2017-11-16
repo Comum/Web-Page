@@ -226,6 +226,26 @@
             "icon": "icon_python.svg"
           }
         ]
+      },
+      {
+        "project_id": "comp_personal-2",
+        "project_name": "Infinite scroll module",
+        "project_description": "This is a module that was developed for the Delhaize project, but due to the projects struture it was not implemented. It still does provide an open source solution for infinity scroll.<br><br><a href='https://www.npmjs.com/package/jquery-heaven-scroll' class='projectInfo--description--inlineLink' target='_blank'>Npm page</a>",
+        "project_images": [],
+        "project_technologies": [
+          {
+            "name": "HTML5",
+            "icon": "icon_html5.svg"
+          },
+          {
+            "name": "CSS/SCSS",
+            "icon": "icon_scss.svg"
+          },
+          {
+            "name": "JavaScript ES6",
+            "icon": "icon_javascript.svg"
+          }
+        ]
       }
     ]
   }
