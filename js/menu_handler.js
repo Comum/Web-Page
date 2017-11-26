@@ -1,8 +1,37 @@
+function addEscVisualDisplay() {
+  $.get('content/aboutEscButton.html', function(data){
+    $('.js-second-container').append(data);
+
+    $(document).keydown(function(e) {
+      if(e.keyCode == 27) { // 'ESC' pressionado
+        if($('.js-second-container').hasClass('js-initiate-sequence')) {
+          $('.js-close-about-area').addClass('buttonBeingPressed');
+        }
+      }
+    });
+    $('.js-close-about-area').on('click', function () {
+      location.reload();
+    });
+  });
+}
+
+function addArrowsVisualDisplay() {
+  $.get('content/aboutArrowsButton.html', function(data){
+    $('.js-second-container').append(data);
+  });
+}
+
 function initiate_sequence() {
-  $('.js-second-nav-wrapper').empty();
-  $('.js-second-nav-wrapper').addClass('js-initiate-sequence');
+  $('.js-second-container').empty();
+  $('.js-second-container').addClass('js-initiate-sequence');
   
-  //criar svg
+  // get ESC button display
+  addEscVisualDisplay();
+  // get arrows display
+  addArrowsVisualDisplay();
+  // left &#8678; or 9665
+  // right &#8680; or 9655
+  // criar svg
 };
 
 function about_button_clicked(id) {
@@ -124,8 +153,9 @@ $(document).ready(function() {
 
   $(document).keyup(function(e) {
      if(e.keyCode == 27) { // 'ESC' pressionado
-        if($('.js-second-nav-wrapper').hasClass('js-initiate-sequence')) {
+        if($('.js-second-container').hasClass('js-initiate-sequence')) {
           //reset a tudo
+          $('.js-second-container').find('.js-close-about-area').removeClass('buttonBeingPressed');
           location.reload();
         }
     }
