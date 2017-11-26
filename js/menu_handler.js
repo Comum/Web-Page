@@ -29,8 +29,8 @@ function initiate_sequence() {
   addEscVisualDisplay();
   // get arrows display
   addArrowsVisualDisplay();
-  // left &#8678; or 9665
-  // right &#8680; or 9655
+  // left &#8678; or 9665 - 37
+  // right &#8680; or 9655 - 39
   // criar svg
 };
 
