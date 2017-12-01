@@ -4,17 +4,21 @@ var MENU_OPTION = '.js-menu-option';
 var SECOND_NOME_RELOAD = '.js-second-nome-reload';
 
 function addEscVisualDisplay() {
-  $.get('content/aboutEscButton.html', function(data){
-    $('.js-second-container').append(data);
+  var $secondContainer = $mainView.find('.js-second-container');
+  var $closeAboutArea;
 
-    $('.js-close-about-area').on('click', function () {
+  $.get('content/aboutEscButton.html', function(data){
+    $secondContainer.append(data);
+
+    $closeAboutArea = $secondContainer.find('.js-close-about-area');
+    $closeAboutArea.on('click', function () {
       location.reload();
     });
   });
 }
 
 function pageNumberOperation(operation) {
-  var $secondContainer = $('.js-second-container');
+  var $secondContainer = $mainView.find('.js-second-container');
   var pageNumber = parseInt($secondContainer.attr('data-page-number'), 10);
 
   if ($secondContainer.hasClass('isLoading')) {
@@ -33,7 +37,7 @@ function pageNumberOperation(operation) {
 }
 
 function addButtonBehaviour() {
-  var $secondContainer = $('.js-second-container');
+  var $secondContainer = $mainView.find('.js-second-container');
 
   $(document).keydown(function(e) {
     if ($secondContainer.hasClass('js-initiate-sequence')) {
@@ -51,7 +55,7 @@ function addButtonBehaviour() {
 }
 
 function removeButtonVisualDisplayEffects() {
-  var $secondContainer = $('.js-second-container');
+  var $secondContainer = $mainView.find('.js-second-container');
 
   $(document).keyup(function(e) {
     if ($secondContainer.hasClass('js-initiate-sequence')) {
@@ -74,12 +78,14 @@ function removeButtonVisualDisplayEffects() {
 }
 
 function addArrowsVisualDisplay() {
+  var $secondContainer = $mainView.find('.js-second-container');
+
   $.get('content/aboutArrowsButton.html', function(data) {
-    $('.js-second-container').append(data);
+    $secondContainer.append(data);
   });
 }
 
-function initiate_sequence() {
+function initiateSequence() {
   var $secondContainer = $('.js-second-container');
 
   $secondContainer
@@ -92,21 +98,15 @@ function initiate_sequence() {
   addButtonBehaviour();
 };
 
-function about_button_clicked(id) {
-
-  if(id === 'about') {
+function aboutButtonClicked(id) {
+  if (id.indexOf('about') !== -1) {
     return true;
+  } else {
+    return false;
   }
-
-  if((id.split('_').length > 1) && (id.split('_')[1] === 'about')){
-    clearContentArea();
-    return true;
-  }
-
-  return false;
 };
 
-function entry_buttons_pressed(id) {
+function entryButtonsPressed(id) {
   if(id.split('_').length === 1) {
     return true;
   }
@@ -176,8 +176,8 @@ function loadNewContent(content) {
 function onClickMenuOption() {
   var elementID = $(this).attr('id');
   
-  if(about_button_clicked(elementID)) {
-    initiate_sequence();
+  if(aboutButtonClicked(elementID)) {
+    initiateSequence();
   }
   else {
     clearContentArea();
@@ -190,7 +190,7 @@ function onClickMenuOption() {
     }
   }
 
-  if(entry_buttons_pressed(elementID)) {
+  if(entryButtonsPressed(elementID)) {
     entryMenuToSecond();
   }
 }
