@@ -1,3 +1,7 @@
+var body;
+var MENU_OPTION = '.js-menu-option';
+var SECOND_NOME_RELOAD = '.js-second-nome-reload';
+
 function addEscVisualDisplay() {
   $.get('content/aboutEscButton.html', function(data){
     $('.js-second-container').append(data);
@@ -162,47 +166,49 @@ function load_new_content(content) {
   });
 };
 
-$(document).ready(function() {
-
-  var id_elem;
-
-  $('.js-main-view').on('click', '.js-menu-option', function() {
-
-    id_elem = $(this).attr('id');
-
-    if(about_button_clicked(id_elem)) {
-      initiate_sequence();
+function onClickMenuOption() {
+  var elementID = $(this).attr('id');
+  
+  if(about_button_clicked(elementID)) {
+    initiate_sequence();
+  }
+  else {
+    clear_content_area();
+    if(elementID.split('_').length > 1) {
+      load_new_content(elementID.split('_')[1]);
     }
     else {
-      clear_content_area();
-      if(id_elem.split('_').length > 1) {
-        load_new_content(id_elem.split('_')[1]);
-      }
-      else {
-        container_fade_in('js-second-nav-wrapper');
-        load_new_content(id_elem);
-      }
+      container_fade_in('js-second-nav-wrapper');
+      load_new_content(elementID);
     }
+  }
 
-    if(entry_buttons_pressed(id_elem)) {
-      entry_menu_to_second();
-    }
-  });
+  if(entry_buttons_pressed(elementID)) {
+    entry_menu_to_second();
+  }
+}
 
-  $('body').on('click', '.js-second-nome-reload', function() {
-    /*
-     * ao clickar no segundo menu manda opacity a 0 e depois recarrega novo conteudo
-     */
-    container_fade_out('js-second-nav-wrapper');
-    container_fade_out('js-content-area');
+function onClickSecondNome() {
+  var $MainContainer = $body.find('.js-main-container');
 
-    if($(this).attr('id') === 'second_nome_reload') { //click no nome
+  container_fade_out('js-second-nav-wrapper');
+  container_fade_out('js-content-area');
 
-      $('.js-main-container').animate({
-        'margin-top': '0px'
-      }, 1250);
-    }
-  });
+  if($(this).attr('id') === 'second_nome_reload') {
+    $MainContainer.animate({
+      'margin-top': '0px'
+    }, 1250);
+  }
+}
+
+$(document).ready(function() {
+  var $jsMainView;
+
+  $body = $('body');
+  $jsMainView = $body.find('.js-main-view');
+
+  $jsMainView.on('click', MENU_OPTION, onClickMenuOption);
+  $body.on('click', SECOND_NOME_RELOAD, onClickSecondNome);
 
   removeButtonVisualDisplayEffects();
 });
