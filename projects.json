@@ -4,7 +4,7 @@
     "companay_image": "esnporto_small.png",
     "companay_image_width": "110",
     "companay_image_height": "31",
-    "company_id": "comp_esnporto",
+    "companyID": "comp_esnporto",
     "company_site": "http://www.esnporto.org",
     "projects": [
       {
@@ -44,7 +44,7 @@
     "companay_image": "Majo.png",
     "companay_image_width": "110",
     "companay_image_height": "66",
-    "company_id": "comp_majo",
+    "companyID": "comp_majo",
     "company_site": "http://www.majo.pt",
     "projects": [
       {
@@ -129,7 +129,7 @@
     "companay_image": "this_place.png",
     "companay_image_width": "110",
     "companay_image_height": "46",
-    "company_id": "comp_thisplace",
+    "companyID": "comp_thisplace",
     "company_site": "http://www.thisplace.com",
     "projects": [
       {
@@ -175,7 +175,7 @@
     "companay_image": "",
     "companay_image_width": "",
     "companay_image_height": "",
-    "company_id": "comp_personal",
+    "companyID": "comp_personal",
     "company_site": "https://web.fe.up.pt/~ee08112/",
     "projects": [
       {

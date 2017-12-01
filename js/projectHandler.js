@@ -1,5 +1,10 @@
-function clear_container_info() {
-  $('.js-content-container').empty();
+var $body;
+var $secondContainer;
+var COMPANY_LOGO = '.js-company-logo';
+
+function clearContainerInfo() {
+  var $contentContainer = $secondContainer.find('.js-content-container');
+  $contentContainer.empty();
 };
 
 function hideOverlayImages() {
@@ -116,7 +121,7 @@ function load_project_info() {
 
   $.getJSON('projects.json', function(data) {
     $.each(data, function( key, val ) {
-      if (company === this.company_id) {
+      if (company === this.companyID) {
         info_proj = this.projects.
                       filter(function(proj) {
                         if (proj.project_id == proj_id) {
@@ -151,35 +156,46 @@ function initiate_company_values(company_info) {
   });
 };
 
-function load_new_info(company_info) {
+function loadNewInfo(companyInfo) {
+  var $contentContainer;
+  var $projectInfo;
 
-  $.get('content/company_info.html', function(data){
-    $('.js-content-container').hide().append(data);
+  $.get('content/company_info.html', function (data) {
+    $contentContainer = $secondContainer.find('.js-content-container');
+    $projectInfo = $secondContainer.find('.js-project-info');
+    $contentContainer.hide().append(data);
 
-    initiate_company_values(company_info);
+    initiate_company_values(companyInfo);
 
     //this function can only run after initiate_company_values() is finished loading
-    $('.js-content-container').fadeTo('slow', 1);
-    $('.js-project-info').unbind('click');
-    $('.js-project-info').on('click', load_project_info);
+    $contentContainer.fadeTo('slow', 1);
+    $projectInfo.unbind('click');
+    $projectInfo.on('click', load_project_info);
   });
 };
 
-function proj_clicked() {
-  $('.js-content-area').on('click', '.js-company-logo', function () {
-    var comp_id = $(this).attr('id');
-
-    $.getJSON('projects.json', function(data) {
-      $.each(data, function( key, val ) {
-        if (comp_id === this.company_id) {
-          clear_container_info();
-          load_new_info(this);
-        }
-      });
+function onCompanyLogoClick() {
+  var companyID = $(this).attr('id');
+  
+  $.getJSON('projects.json', function (data) {
+    $.each(data, function( key, val ) {
+      if (companyID === this.companyID) {
+        clearContainerInfo();
+        loadNewInfo(this);
+      }
     });
   });
+}
+
+function projectClicked() {
+  var $contentArea = $secondContainer.find('.js-content-area');
+
+  $contentArea.on('click', COMPANY_LOGO, onCompanyLogoClick);
 };
 
 $(document).ready(function () {
-  proj_clicked();
+  $body = $('body');
+  $secondContainer = $body.find('.js-second-container');
+
+  projectClicked();
 });
