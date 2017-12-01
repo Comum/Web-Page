@@ -2,36 +2,89 @@ function addEscVisualDisplay() {
   $.get('content/aboutEscButton.html', function(data){
     $('.js-second-container').append(data);
 
-    $(document).keydown(function(e) {
-      if(e.keyCode == 27) { // 'ESC' pressionado
-        if($('.js-second-container').hasClass('js-initiate-sequence')) {
-          $('.js-close-about-area').addClass('buttonBeingPressed');
-        }
-      }
-    });
     $('.js-close-about-area').on('click', function () {
       location.reload();
     });
   });
 }
 
+function pageNumberOperation(operation) {
+  var $secondContainer = $('.js-second-container');
+  var pageNumber = parseInt($secondContainer.attr('data-page-number'), 10);
+
+  if ($secondContainer.hasClass('isLoading')) {
+    return;
+  }
+
+  if (operation === 'inc') {
+    pageNumber = pageNumber + 1;
+  } else if ((operation === 'dec') && (pageNumber > 1)) {
+    pageNumber = pageNumber - 1;
+  }
+
+  $secondContainer
+    .addClass('isLoading')
+    .attr('data-page-number', pageNumber);
+}
+
+function addButtonBehaviour() {
+  var $secondContainer = $('.js-second-container');
+
+  $(document).keydown(function(e) {
+    if ($secondContainer.hasClass('js-initiate-sequence')) {
+      if(e.keyCode === 27) {
+        $secondContainer.find('.js-close-about-area').addClass('buttonBeingPressed');
+      } else if (e.keyCode === 37) {
+        $secondContainer.find('.js-about-left-arrow').addClass('buttonBeingPressed');
+        pageNumberOperation('dec');
+      } else if (e.keyCode === 39) {
+        $secondContainer.find('.js-about-right-arrow').addClass('buttonBeingPressed');
+        pageNumberOperation('inc');
+      }
+    }
+  });
+}
+
+function removeButtonVisualDisplayEffects() {
+  var $secondContainer = $('.js-second-container');
+
+  $(document).keyup(function(e) {
+    if ($secondContainer.hasClass('js-initiate-sequence')) {
+      if(e.keyCode === 27) { // 'ESC' pressionado
+        $secondContainer.find('.js-close-about-area').removeClass('buttonBeingPressed');
+        location.reload();
+      } else if (e.keyCode === 37) {
+        $secondContainer
+          .removeClass('isLoading')
+          .find('.js-about-left-arrow')
+          .removeClass('buttonBeingPressed');
+      } else if (e.keyCode === 39) {
+        $secondContainer
+          .removeClass('isLoading')
+          .find('.js-about-right-arrow')
+          .removeClass('buttonBeingPressed');
+      }
+    }
+  });
+}
+
 function addArrowsVisualDisplay() {
-  $.get('content/aboutArrowsButton.html', function(data){
+  $.get('content/aboutArrowsButton.html', function(data) {
     $('.js-second-container').append(data);
   });
 }
 
 function initiate_sequence() {
-  $('.js-second-container').empty();
-  $('.js-second-container').addClass('js-initiate-sequence');
+  var $secondContainer = $('.js-second-container');
+
+  $secondContainer
+    .empty()
+    .addClass('js-initiate-sequence')
+    .attr('data-page-number', 1);
   
-  // get ESC button display
   addEscVisualDisplay();
-  // get arrows display
   addArrowsVisualDisplay();
-  // left &#8678; or 9665 - 37
-  // right &#8680; or 9655 - 39
-  // criar svg
+  addButtonBehaviour();
 };
 
 function about_button_clicked(id) {
@@ -151,13 +204,5 @@ $(document).ready(function() {
     }
   });
 
-  $(document).keyup(function(e) {
-     if(e.keyCode == 27) { // 'ESC' pressionado
-        if($('.js-second-container').hasClass('js-initiate-sequence')) {
-          //reset a tudo
-          $('.js-second-container').find('.js-close-about-area').removeClass('buttonBeingPressed');
-          location.reload();
-        }
-    }
-  });
+  removeButtonVisualDisplayEffects();
 });
