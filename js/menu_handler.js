@@ -1,4 +1,5 @@
-var body;
+var $body;
+var $mainView;
 var MENU_OPTION = '.js-menu-option';
 var SECOND_NOME_RELOAD = '.js-second-nome-reload';
 
@@ -98,7 +99,7 @@ function about_button_clicked(id) {
   }
 
   if((id.split('_').length > 1) && (id.split('_')[1] === 'about')){
-    clear_content_area();
+    clearContentArea();
     return true;
   }
 
@@ -111,25 +112,28 @@ function entry_buttons_pressed(id) {
   }
 };
 
-function container_fade_in(container) {
-  $('.' + container).fadeTo('slow', 1);
+function containerFadeIn(container) {
+  $mainView.find('.' + container).fadeTo('slow', 1);
 };
 
-function container_fade_out(container) {
-  $('.' + container).fadeTo('slow', 0);
+function containerFadeOut(container) {
+  $mainView.find('.' + container).fadeTo('slow', 0);
 }
 
-function entry_menu_to_second() {
-  $('.js-main-container').animate({
-      'margin-top': '-' + $('.js-main-container').height() + 'px'
-  }, 1250, function() {
-    //menu do segundo menu -> fade in
-    container_fade_in('js-second-container');
+function entryMenuToSecond() {
+  var $mainContainer = $mainView.find('.js-main-container');
+
+  $mainContainer.animate({
+      'margin-top': '-' + $mainContainer.height() + 'px'
+  }, 1250, function () {
+    containerFadeIn('js-second-container');
   });
 };
 
-function clear_content_area() {
-  $('.js-content-area').empty();
+function clearContentArea() {
+  var $contentArea = $mainView.find('.js-content-area')
+  
+  $contentArea.empty();
 };
 
 function loadContactsPage(info, quote) {
@@ -156,12 +160,15 @@ function getPageWithQuote(info) {
   });
 }
 
-function load_new_content(content) {
-  $.get('content/' + content + '.html', function(data){
+function loadNewContent(content) {
+  $.get('content/' + content + '.html', function (data) {
     if (content === 'contacts') {
       getPageWithQuote(data);
     } else {
-      $('.js-content-area').hide().append(data).fadeTo('slow', 1);
+      $('.js-content-area')
+        .hide()
+        .append(data)
+        .fadeTo('slow', 1);
     }
   });
 };
@@ -173,41 +180,39 @@ function onClickMenuOption() {
     initiate_sequence();
   }
   else {
-    clear_content_area();
+    clearContentArea();
     if(elementID.split('_').length > 1) {
-      load_new_content(elementID.split('_')[1]);
+      loadNewContent(elementID.split('_')[1]);
     }
     else {
-      container_fade_in('js-second-nav-wrapper');
-      load_new_content(elementID);
+      containerFadeIn('js-second-nav-wrapper');
+      loadNewContent(elementID);
     }
   }
 
   if(entry_buttons_pressed(elementID)) {
-    entry_menu_to_second();
+    entryMenuToSecond();
   }
 }
 
 function onClickSecondNome() {
-  var $MainContainer = $body.find('.js-main-container');
+  var $mainContainer = $mainView.find('.js-main-container');
 
-  container_fade_out('js-second-nav-wrapper');
-  container_fade_out('js-content-area');
+  containerFadeOut('js-second-nav-wrapper');
+  containerFadeOut('js-content-area');
 
   if($(this).attr('id') === 'second_nome_reload') {
-    $MainContainer.animate({
+    $mainContainer.animate({
       'margin-top': '0px'
     }, 1250);
   }
 }
 
 $(document).ready(function() {
-  var $jsMainView;
-
   $body = $('body');
-  $jsMainView = $body.find('.js-main-view');
+  $mainView = $body.find('.js-main-view');
 
-  $jsMainView.on('click', MENU_OPTION, onClickMenuOption);
+  $mainView.on('click', MENU_OPTION, onClickMenuOption);
   $body.on('click', SECOND_NOME_RELOAD, onClickSecondNome);
 
   removeButtonVisualDisplayEffects();
