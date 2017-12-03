@@ -72,32 +72,45 @@ function onImageArrowClick() {
 }
 
 function populateProjectInfo(data, proj) {
-  var html,
-      imageName;
+  var html;
+  var imageName;
+  var $contentContainer = $secondContainer.find('.js-content-container');
+  var $projectInfoName;
+  var $projectInfoContent;
+  var $projectInfoTechnologies;
+  var $projectImageArea;
 
-  $('.js-content-container').append(data);
-  $('.js-project-info-name').text(proj[0].project_name);
-  $('.js-project-info-content').html('&nbsp;&nbsp;' + proj[0].project_description);
-  proj[0].project_technologies.forEach(function (tech, index) {
-    html = '<div class="projectInfo--technologies--area"><div id="icon_' + index + '" class="projectInfo--technologies--icon js-tech-lang-icon"></div><div class="projectInfo--technologies--lang">' + tech.name + '</div></div>';
-    $('.js-project-info-technologies').append(html);
-    $('#icon_' + index).css('background-image', 'url(Images/' + tech.icon + ')');
-  });
+  $contentContainer.append(data);
 
-  if (proj[0].project_images.length > 0) {
-    imageName = proj[0].project_images[0].split('.')[0].slice(0, -1);
-    imageUrl = 'url(Images/' + proj[0].project_images[0] + ')';
-  } else {
-    imageName = 'noImagesForProject';
-    imageUrl = 'url(Images/no-results.png)';
-  }
-
-  $('.js-project-image-area')
-    .css('background-image', imageUrl)
-    .attr('data-image-count', proj[0].project_images.length)
-    .attr('data-image-name', imageName);
-
-  $('.js-content-container').fadeTo('slow', 1);
+  setTimeout(function () {
+    $projectInfoName = $secondContainer.find('.js-project-info-name');
+    $projectInfoContent = $secondContainer.find('.js-project-info-content');
+    $projectInfoTechnologies = $secondContainer.find('.js-project-info-technologies');
+    $projectImageArea = $secondContainer.find('.js-project-image-area');
+    
+    $projectInfoName.text(proj[0].project_name);
+    $projectInfoContent.html('&nbsp;&nbsp;' + proj[0].project_description);
+    proj[0].project_technologies.forEach(function (tech, index) {
+      html = '<div class="projectInfo--technologies--area"><div id="icon_' + index + '" class="projectInfo--technologies--icon js-tech-lang-icon"></div><div class="projectInfo--technologies--lang">' + tech.name + '</div></div>';
+      $projectInfoTechnologies.append(html);
+      $('#icon_' + index).css('background-image', 'url(Images/' + tech.icon + ')');
+    });
+  
+    if (proj[0].project_images.length > 0) {
+      imageName = proj[0].project_images[0].split('.')[0].slice(0, -1);
+      imageUrl = 'url(Images/' + proj[0].project_images[0] + ')';
+    } else {
+      imageName = 'noImagesForProject';
+      imageUrl = 'url(Images/no-results.png)';
+    }
+  
+    $projectImageArea
+      .css('background-image', imageUrl)
+      .attr('data-image-count', proj[0].project_images.length)
+      .attr('data-image-name', imageName);
+  
+    $contentContainer.fadeTo('slow', 1);
+  }, 0);
 }
 
 function loadProjectTemplate(project) {
