@@ -1,16 +1,19 @@
 var $body;
 var $secondContainer;
+var $imageBottomOverlay;
+var $imageTopOverlay;
 var COMPANY_LOGO = '.js-company-logo';
+var ANIMATION_DELAY = 750;
 
 function clearContainerInfo() {
   var $contentContainer = $secondContainer.find('.js-content-container');
+  
   $contentContainer.empty();
 };
 
 function hideOverlayImages() {
-  var $imageBottomOverlay = $secondContainer.find('.js-image-bottomOverlay');
-  var $imageTopOverlay = $secondContainer.find('.js-image-topOverlay');
-  var ANIMATION_DELAY = 750;
+  $imageBottomOverlay = $secondContainer.find('.js-image-bottomOverlay');
+  $imageTopOverlay = $secondContainer.find('.js-image-topOverlay');
 
   $imageBottomOverlay.animate({
       bottom: '-50%'
@@ -22,26 +25,28 @@ function hideOverlayImages() {
 }
 
 function changeBackgroundImageWithAnimation(image, number) {
+  var $projectImageArea = $secondContainer.find('.js-project-image-area');
+
   setTimeout(function () {
-    $('.js-project-image-area')
+    $projectImageArea
       .css('background-image', 'url(' + image + ')')
       .attr('data-image-number', number);
 
       hideOverlayImages()
-  }, 750);
+  }, ANIMATION_DELAY);
 }
 
 function changeBackgroundAnimation(image, number) {
+  $imageBottomOverlay = $secondContainer.find('.js-image-bottomOverlay');
+  $imageTopOverlay = $secondContainer.find('.js-image-topOverlay');
 
-  $('.js-image-bottomOverlay').animate({
-       bottom: 0
-    }, { duration: 750, queue: false });
+  $imageBottomOverlay.animate({
+      bottom: 0
+  }, { duration: ANIMATION_DELAY, queue: false });
 
-    $('.js-image-topOverlay').animate({
-       top: 0
-    }, { duration: 750, queue: false }, changeBackgroundImageWithAnimation(image, number));
-
-    //setTimeout(changeBackgroundImageWithAnimation(), 750);
+  $imageTopOverlay.animate({
+      top: 0
+  }, { duration: ANIMATION_DELAY, queue: false }, changeBackgroundImageWithAnimation(image, number));
 }
 
 function onImageArrowClick() {
