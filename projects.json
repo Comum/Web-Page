@@ -8,7 +8,7 @@
     "company_site": "http://www.esnporto.org",
     "projects": [
       {
-        "project_id": "comp_esnporto-1",
+        "projectID": "comp_esnporto-1",
         "project_name": "Buddy System",
         "project_description": "Buddy System is a Web App that connects two app members with each other and sends an email to each of them with information about the other user. It requires an user to make the attribution (non automonous attribution was part of the specs)",
         "project_images": [
@@ -48,7 +48,7 @@
     "company_site": "http://www.majo.pt",
     "projects": [
       {
-        "project_id": "comp_majo-1",
+        "projectID": "comp_majo-1",
         "project_name": "Majo Energy Audit",
         "project_description": "Majo Energy Audit is a managment platform that allows users to convert energy values into monetary values. In a first instance it was working to convert energy produced by mini hydric centrals.",
         "project_images": [
@@ -85,7 +85,7 @@
         ]
       },
       {
-        "project_id": "comp_majo-2",
+        "projectID": "comp_majo-2",
         "project_name": "Majo Managment Plaform",
         "project_description": "Majo Managment Platform is a managment tool to help users receive tasks and manage projects. It is based in Trello and its work flow is based on MAJO's way of working.",
         "project_images": [
@@ -133,7 +133,7 @@
     "company_site": "http://www.thisplace.com",
     "projects": [
       {
-        "project_id": "comp_thisplace-1",
+        "projectID": "comp_thisplace-1",
         "project_name": "Delhaize",
         "project_description": "Front end work on the web store for the supermarket chain Delhaize.<br><br><a href='https://www.delhaize.be' class='projectInfo--description--inlineLink' target='_blank'>Delhaize.be</a><br><br><a href='https://www.ab.gr' class='projectInfo--description--inlineLink' target='_blank'>ab.gr</a><br><br><a href='https://www.maxi.rs' class='projectInfo--description--inlineLink' target='_blank'>Maxi.rs</a>",
         "project_images": [
@@ -179,7 +179,7 @@
     "company_site": "https://web.fe.up.pt/~ee08112/",
     "projects": [
       {
-        "project_id": "comp_personal-1",
+        "projectID": "comp_personal-1",
         "project_name": "BreakTheBlock Hackathon",
         "project_description": "#breaktheblock Hackathon was an event created by Simply Business that challenged the participants to create a solution for insurance using block chain. More information at: <a href='http://breaktheblock.simplybusiness.co.uk/' class='color-white' target='_blank'>Simply Business</a> <br>&nbsp;&nbsp;Our team presented an insurance solution that allowed to insure an event against weather misfortune, but the person that applied to this insurance could only claim his or her prize if he or she were present at the place of the event. We also had a Raspberry Pi that simulated a node in a network of sensors that would detect weather misfortune, such as rain, for example. The user would also be notified by text message with a link to check his or her current location to make sure a claim is possible.",
         "project_images": [
@@ -228,7 +228,7 @@
         ]
       },
       {
-        "project_id": "comp_personal-2",
+        "projectID": "comp_personal-2",
         "project_name": "Infinite scroll module",
         "project_description": "This is a module that was developed for the Delhaize project, but due to the projects struture it was not implemented. It still does provide an open source solution for infinity scroll.<br><br><a href='https://www.npmjs.com/package/jquery-heaven-scroll' class='projectInfo--description--inlineLink' target='_blank'>Npm page</a>",
         "project_images": [],

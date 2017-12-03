@@ -71,7 +71,7 @@ function onImageArrowClick() {
   changeBackgroundAnimation(nextImage, nextImageNumber);
 }
 
-function popuate_proj_info(data, proj) {
+function populateProjectInfo(data, proj) {
   var html,
       imageName;
 
@@ -100,41 +100,48 @@ function popuate_proj_info(data, proj) {
   $('.js-content-container').fadeTo('slow', 1);
 }
 
-function load_proj_template(proj) {
-  $.get('content/project_info.html', function(data){
-    $('.js-content-container').fadeTo('slow', 0, function () {
-      $('.js-content-container')
+function loadProjectTemplate(project) {
+  var $contentContainer = $secondContainer.find('.js-content-container');
+  var $imageArrow;
+
+  $.get('content/project_info.html', function (data) {
+    $contentContainer.fadeTo('slow', 0, function () {
+      $contentContainer
         .empty()
         .hide();
 
-      popuate_proj_info(data, proj);
+      populateProjectInfo(data, project);
 
-      $('.js-image-arrow').on('click', onImageArrowClick);
+      // promises
+      setTimeout(function () {
+        $imageArrow = $secondContainer.find('.js-image-arrow');
+        $imageArrow.on('click', onImageArrowClick);
+      }, 0);
     });
   });
 }
 
-function load_project_info() {
-  var company = $(this).attr('id').split('-')[0],
-      proj_id = $(this).attr('id'),
-      info_proj;
+function loadProjectInfo() {
+  var projID = $(this).attr('id');
+  var company = projID.split('-')[0];
+  var infoProject;
 
   $.getJSON('projects.json', function(data) {
     $.each(data, function( key, val ) {
       if (company === this.companyID) {
-        info_proj = this.projects.
+        infoProject = this.projects.
                       filter(function(proj) {
-                        if (proj.project_id == proj_id) {
+                        if (proj.projectID == projID) {
                           return proj;
                         }
                       });
-        load_proj_template(info_proj);
+        loadProjectTemplate(infoProject);
       }
     });
   });
 }
 
-function initiate_company_values(company_info) {
+function initiateCompanyValues(company_info) {
   var html;
 
   $('.js-company_area-name').append(company_info.company_name);
@@ -146,10 +153,10 @@ function initiate_company_values(company_info) {
 
   company_info.projects.forEach(function (proj) {
     if (proj.project_images[0]) {
-        html = '<div id="' + proj.project_id + '" class="company_area--projects--project_area js-project-info"><div class="company_area--projects--project_img"><img src="Images/' + proj.project_images[0] + '" class="company_area--projects--project_img_properties"/></div><div class="company_area--projects--project_nome">' + proj.project_name + '</div></div>';
+        html = '<div id="' + proj.projectID + '" class="company_area--projects--project_area js-project-info"><div class="company_area--projects--project_img"><img src="Images/' + proj.project_images[0] + '" class="company_area--projects--project_img_properties"/></div><div class="company_area--projects--project_nome">' + proj.project_name + '</div></div>';
     }
     else {
-      html = '<div id="' + proj.project_id + '" class="company_area--projects--project_area js-project-info"><div class="company_area--projects--project_img_empty">Images Not Availabe</div><div class="company_area--projects--project_nome">' + proj.project_name + '</div></div>';
+      html = '<div id="' + proj.projectID + '" class="company_area--projects--project_area js-project-info"><div class="company_area--projects--project_img_empty">Images Not Availabe</div><div class="company_area--projects--project_nome">' + proj.project_name + '</div></div>';
     }
 
     $('.js-company-projects').prepend(html);
@@ -162,15 +169,18 @@ function loadNewInfo(companyInfo) {
 
   $.get('content/company_info.html', function (data) {
     $contentContainer = $secondContainer.find('.js-content-container');
-    $projectInfo = $secondContainer.find('.js-project-info');
     $contentContainer.hide().append(data);
 
-    initiate_company_values(companyInfo);
+    initiateCompanyValues(companyInfo);
 
-    //this function can only run after initiate_company_values() is finished loading
-    $contentContainer.fadeTo('slow', 1);
-    $projectInfo.unbind('click');
-    $projectInfo.on('click', load_project_info);
+    // this function can only run after initiateCompanyValues() is finished loading
+    // promises
+    setTimeout(function () {
+      $projectInfo = $secondContainer.find('.js-project-info');
+      $contentContainer.fadeTo('slow', 1);
+      $projectInfo.unbind('click');
+      $projectInfo.on('click', loadProjectInfo);
+    }, 0);
   });
 };
 
