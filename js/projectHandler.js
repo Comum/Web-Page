@@ -88,17 +88,17 @@ function populateProjectInfo(data, proj) {
     $projectInfoTechnologies = $secondContainer.find('.js-project-info-technologies');
     $projectImageArea = $secondContainer.find('.js-project-image-area');
     
-    $projectInfoName.text(proj[0].project_name);
-    $projectInfoContent.html('&nbsp;&nbsp;' + proj[0].project_description);
-    proj[0].project_technologies.forEach(function (tech, index) {
+    $projectInfoName.text(proj[0].projectName);
+    $projectInfoContent.html('&nbsp;&nbsp;' + proj[0].projectDescription);
+    proj[0].projectTechnologies.forEach(function (tech, index) {
       html = '<div class="projectInfo--technologies--area"><div id="icon_' + index + '" class="projectInfo--technologies--icon js-tech-lang-icon"></div><div class="projectInfo--technologies--lang">' + tech.name + '</div></div>';
       $projectInfoTechnologies.append(html);
       $('#icon_' + index).css('background-image', 'url(Images/' + tech.icon + ')');
     });
   
-    if (proj[0].project_images.length > 0) {
-      imageName = proj[0].project_images[0].split('.')[0].slice(0, -1);
-      imageUrl = 'url(Images/' + proj[0].project_images[0] + ')';
+    if (proj[0].projectImages.length > 0) {
+      imageName = proj[0].projectImages[0].split('.')[0].slice(0, -1);
+      imageUrl = 'url(Images/' + proj[0].projectImages[0] + ')';
     } else {
       imageName = 'noImagesForProject';
       imageUrl = 'url(Images/no-results.png)';
@@ -106,7 +106,7 @@ function populateProjectInfo(data, proj) {
   
     $projectImageArea
       .css('background-image', imageUrl)
-      .attr('data-image-count', proj[0].project_images.length)
+      .attr('data-image-count', proj[0].projectImages.length)
       .attr('data-image-name', imageName);
   
     $contentContainer.fadeTo('slow', 1);
@@ -154,22 +154,22 @@ function loadProjectInfo() {
   });
 }
 
-function initiateCompanyValues(company_info) {
+function initiateCompanyValues(companyInfo) {
   var html;
 
-  $('.js-company_area-name').append(company_info.company_name);
-  if (company_info.companay_image.trim().length > 0) {
-      $('.js-company_area-logo').prepend('<a href="' + company_info.company_site + '" target="_blank"><img width="' + company_info.companay_image_width + '" height="' + company_info.companay_image_height + '" src="Images/' + company_info.companay_image.trim() + '" /></a>');
+  $('.js-company_area-name').append(companyInfo.companyName);
+  if (companyInfo.companay_image.trim().length > 0) {
+      $('.js-company_area-logo').prepend('<a href="' + companyInfo.company_site + '" target="_blank"><img width="' + companyInfo.companay_image_width + '" height="' + companyInfo.companay_image_height + '" src="Images/' + companyInfo.companay_image.trim() + '" /></a>');
   } else {
     $('.js-company_area-name').addClass('noImageProj');
   }
 
-  company_info.projects.forEach(function (proj) {
-    if (proj.project_images[0]) {
-        html = '<div id="' + proj.projectID + '" class="company_area--projects--project_area js-project-info"><div class="company_area--projects--project_img"><img src="Images/' + proj.project_images[0] + '" class="company_area--projects--project_img_properties"/></div><div class="company_area--projects--project_nome">' + proj.project_name + '</div></div>';
+  companyInfo.projects.forEach(function (proj) {
+    if (proj.projectImages[0]) {
+        html = '<div id="' + proj.projectID + '" class="company_area--projects--project_area js-project-info"><div class="company_area--projects--project_img"><img src="Images/' + proj.projectImages[0] + '" class="company_area--projects--project_img_properties"/></div><div class="company_area--projects--project_nome">' + proj.projectName + '</div></div>';
     }
     else {
-      html = '<div id="' + proj.projectID + '" class="company_area--projects--project_area js-project-info"><div class="company_area--projects--project_img_empty">Images Not Availabe</div><div class="company_area--projects--project_nome">' + proj.project_name + '</div></div>';
+      html = '<div id="' + proj.projectID + '" class="company_area--projects--project_area js-project-info"><div class="company_area--projects--project_img_empty">Images Not Availabe</div><div class="company_area--projects--project_nome">' + proj.projectName + '</div></div>';
     }
 
     $('.js-company-projects').prepend(html);
