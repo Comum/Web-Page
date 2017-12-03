@@ -1,11 +1,11 @@
 [
   {
     "companyName": "ESN Porto",
-    "companay_image": "esnporto_small.png",
-    "companay_image_width": "110",
-    "companay_image_height": "31",
+    "companyImage": "esnporto_small.png",
+    "companyImageWidth": "110",
+    "companyImageHeight": "31",
     "companyID": "comp_esnporto",
-    "company_site": "http://www.esnporto.org",
+    "companySite": "http://www.esnporto.org",
     "projects": [
       {
         "projectID": "comp_esnporto-1",
@@ -41,11 +41,11 @@
   },
   {
     "companyName": "MAJO",
-    "companay_image": "Majo.png",
-    "companay_image_width": "110",
-    "companay_image_height": "66",
+    "companyImage": "Majo.png",
+    "companyImageWidth": "110",
+    "companyImageHeight": "66",
     "companyID": "comp_majo",
-    "company_site": "http://www.majo.pt",
+    "companySite": "http://www.majo.pt",
     "projects": [
       {
         "projectID": "comp_majo-1",
@@ -126,11 +126,11 @@
   },
   {
     "companyName": "This Place",
-    "companay_image": "this_place.png",
-    "companay_image_width": "110",
-    "companay_image_height": "46",
+    "companyImage": "this_place.png",
+    "companyImageWidth": "110",
+    "companyImageHeight": "46",
     "companyID": "comp_thisplace",
-    "company_site": "http://www.thisplace.com",
+    "companySite": "http://www.thisplace.com",
     "projects": [
       {
         "projectID": "comp_thisplace-1",
@@ -172,11 +172,11 @@
   },
   {
     "companyName": "Personal Projects",
-    "companay_image": "",
-    "companay_image_width": "",
-    "companay_image_height": "",
+    "companyImage": "",
+    "companyImageWidth": "",
+    "companyImageHeight": "",
     "companyID": "comp_personal",
-    "company_site": "https://web.fe.up.pt/~ee08112/",
+    "companySite": "https://web.fe.up.pt/~ee08112/",
     "projects": [
       {
         "projectID": "comp_personal-1",

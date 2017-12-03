@@ -8,13 +8,17 @@ function clearContainerInfo() {
 };
 
 function hideOverlayImages() {
-  $('.js-image-bottomOverlay').animate({
-       bottom: '-50%'
-    }, { duration: 750, queue: false });
+  var $imageBottomOverlay = $secondContainer.find('.js-image-bottomOverlay');
+  var $imageTopOverlay = $secondContainer.find('.js-image-topOverlay');
+  var ANIMATION_DELAY = 750;
 
-    $('.js-image-topOverlay').animate({
-       top: '-50%'
-    }, { duration: 750, queue: false });
+  $imageBottomOverlay.animate({
+      bottom: '-50%'
+  }, { duration: ANIMATION_DELAY, queue: false });
+
+  $imageTopOverlay.animate({
+      top: '-50%'
+  }, { duration: ANIMATION_DELAY, queue: false });
 }
 
 function changeBackgroundImageWithAnimation(image, number) {
@@ -41,11 +45,11 @@ function changeBackgroundAnimation(image, number) {
 }
 
 function onImageArrowClick() {
-  var arrowDirection = 0,
-      nextImage = '',
-      $imageInfo = $('.js-project-image-area'),
-      nextImageNumber = $imageInfo.attr('data-image-number'),
-      imageName = $imageInfo.attr('data-image-name');
+  var arrowDirection = 0;
+  var nextImage = '';
+  var $imageInfo = $secondContainer.find('.js-project-image-area');
+  var nextImageNumber = $imageInfo.attr('data-image-number');
+  var imageName = $imageInfo.attr('data-image-name');
 
   if (imageName === 'noImagesForProject') {
     return;
@@ -156,12 +160,15 @@ function loadProjectInfo() {
 
 function initiateCompanyValues(companyInfo) {
   var html;
+  var $companyAreaName = $secondContainer.find('.js-companyArea-name');
+  var $companyAreaLogo = $secondContainer.find('.js-companyArea-logo');
+  var $companyProjects = $secondContainer.find('.js-company-projects');
 
-  $('.js-company_area-name').append(companyInfo.companyName);
-  if (companyInfo.companay_image.trim().length > 0) {
-      $('.js-company_area-logo').prepend('<a href="' + companyInfo.company_site + '" target="_blank"><img width="' + companyInfo.companay_image_width + '" height="' + companyInfo.companay_image_height + '" src="Images/' + companyInfo.companay_image.trim() + '" /></a>');
+  $companyAreaName.append(companyInfo.companyName);
+  if (companyInfo.companyImage.trim().length > 0) {
+      $companyAreaLogo.prepend('<a href="' + companyInfo.companySite + '" target="_blank"><img width="' + companyInfo.companyImageWidth + '" height="' + companyInfo.companyImageHeight + '" src="Images/' + companyInfo.companyImage.trim() + '" /></a>');
   } else {
-    $('.js-company_area-name').addClass('noImageProj');
+    $companyAreaName.addClass('noImageProj');
   }
 
   companyInfo.projects.forEach(function (proj) {
@@ -172,7 +179,7 @@ function initiateCompanyValues(companyInfo) {
       html = '<div id="' + proj.projectID + '" class="company_area--projects--project_area js-project-info"><div class="company_area--projects--project_img_empty">Images Not Availabe</div><div class="company_area--projects--project_nome">' + proj.projectName + '</div></div>';
     }
 
-    $('.js-company-projects').prepend(html);
+    $companyProjects.prepend(html);
   });
 };
 
