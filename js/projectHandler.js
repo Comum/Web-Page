@@ -126,7 +126,7 @@ function loadProjectTemplate(project) {
   var $contentContainer = $secondContainer.find('.js-content-container');
   var $imageArrow;
 
-  $.get('content/project_info.html', function (data) {
+  $.get('content/projectInfo.html', function (data) {
     $contentContainer.fadeTo('slow', 0, function () {
       $contentContainer
         .empty()
@@ -192,7 +192,7 @@ function loadNewInfo(companyInfo) {
   var $contentContainer;
   var $projectInfo;
 
-  $.get('content/company_info.html', function (data) {
+  $.get('content/companyInfo.html', function (data) {
     $contentContainer = $secondContainer.find('.js-content-container');
     $contentContainer.hide().append(data);
 
