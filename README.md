@@ -14,3 +14,4 @@ My personal web page
  - No precompilers, only CSS
 2. Vanilla and jQuery
  - No frameworks, all done from scratch
+3. Next step: integrate WebPack
