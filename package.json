@@ -8,7 +8,7 @@
     "start": "webpack-dev-server --watch",
     "build": "webpack -p"
   },
-  "author": "Sophie Vanderveken",
+  "author": "Miguel Ribeiro",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^7.1.3",
