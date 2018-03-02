@@ -1,5 +1,11 @@
 import { containerFadeOut, containerFadeIn } from './fades'; 
 
+/*
+ * KNOWN BUGS
+ * If a slide is changed before the text is added then the text of the previous slide is printed in the new slide.
+ * 
+ */
+
 let $body = $('body');
 let $container = $body.find('.js-content-area');
 let interval;
@@ -42,7 +48,10 @@ const slideTwo = `
         <div class="slideTwoContentContainer opacity-0 logoFeup js-image-container">
             <a href="https://www.fe.up.pt" target="_blank" class="display-block height-200"></a>
         </div>
-        <div class="slideTwoContentContainer text-color js-text-container"></div>
+        <div class="slideTwoContentContainer text-color">
+            <span class="textLineContent js-text-container"></span>
+            <span class="dashBlinker text-bold js-dash-blinker">|</span>
+        </div>
     </div>
 `;
 
@@ -52,7 +61,10 @@ const slideThree = `
             <a href="https://www.majo.pt" target="_blank" class="display-block height-100"></a>
         </div>
         <div class="slideThreeContentContainer text-color">
-            <div class="slideThreeTextField text-color js-text-intro-1"></div>
+            <div class="slideThreeTextField text-color js-text-intro-1">
+                <span class="textLineContent js-text-container"></span>
+                <span class="dashBlinker text-bold js-dash-blinker">|</span>
+            </div>
             <div class="slideThreeTextField text-color js-text-intro-2"></div>
             <div class="slideThreeTextField text-color text-large text-italic js-text-proj-1"></div>
             <div class="slideThreeTextField text-color text-large text-italic js-text-proj-2"></div>
@@ -87,36 +99,26 @@ function loadSlide(slide) {
 }
 
 // use another variable as interval
-function insertText(text, $container, delay, slide) {
+function insertText(text, $container, delay, moveBlinker) {
     return new Promise((resolve, reject) => {
         let chars = text.split('');
         let i = 0;
         let wordsLeft = chars.length;
 
-        // Work around to deal with race condition created by the promise chain in the first slide
-        if (slide === 1) {
-            interval = setInterval(function () {
-                if(i < chars.length) {
-                    $container.text($container.text() + chars[i++]);
-                    wordsLeft--;
-                    if (wordsLeft === 0) {
+        interval = setInterval(function () {
+            if(i < chars.length) {
+                $container.text($container.text() + chars[i++]);
+                wordsLeft--;
+                if (wordsLeft === 0) {
+                    
+                    if (moveBlinker) {
                         moveBlinkerToNextLine();
-                        resolve();
                     }
+
+                    resolve();
                 }
-            }, delay);
-        } else if (slide === 2) {
-            intervalSecond = setInterval(function () { console.log(chars.length);
-                if(i < chars.length) {
-                    $container.text($container.text() + chars[i]);
-                    wordsLeft--;
-                    i++;
-                    if (wordsLeft === 0) {
-                        resolve();
-                    }
-                }
-            }, delay);
-        }
+            }
+        }, delay);
     });
 }
 
@@ -174,6 +176,7 @@ function slideOneSequence() {
                 'Spoilers: it will be boring and short.'
             ];
 
+            clearInterval(interval);
             loadSlideOneText(textToLoad);
         });
 }
@@ -183,16 +186,19 @@ function slideTwoSequence() {
 
     return loadSlide(slideTwo)
         .then(() => {
+            clearInterval(interval);
             return containerFadeIn('js-image-container');
         })
         .then(() => {
             let textToShow = 'In 2014 I finished my Masters in Electrotecnical Engineering at Faculdade de Engenharia da Universidade do Porto. As soon as I finished I started my Web Developer career, as you do.';
 
             $containerToUse = $body.find('.js-text-container');
-            return insertText(textToShow, $containerToUse, 50, 2);
+
+            return insertText(textToShow, $containerToUse, 50, 0);
         })
         .then(() => {
             clearInterval(intervalSecond);
+
             replaceTextWithAnchor($containerToUse, 'Faculdade de Engenharia da Universidade do Porto', 'https://sigarra.up.pt/feup/');
         });
 }
@@ -202,42 +208,43 @@ function slideThreeSequence() {
 
     return loadSlide(slideThree)
         .then(() => {
+            clearInterval(interval);
             return containerFadeIn('js-slide-container');
         })
         .then(() => {
             let textToShow = 'In Octber 2014 I started working at a company named MAJO. I was hired, mainly, as a full stack developer but I ended up doing a bit of tech support as well. On both projects I was the only dev working on them :(';
 
-            $containerToUse = $body.find('.js-text-intro-1');
+            $containerToUse = $body.find('.js-text-intro-1').find('.js-text-container');
             clearInterval(intervalSecond);
-            return insertText(textToShow, $containerToUse, 50, 2);
+            return insertText(textToShow, $containerToUse, 50, 0);
         })
         .then(() => {
             let textToShow = 'My two big projects on MAJO were:';
 
             $containerToUse = $body.find('.js-text-intro-2');
             clearInterval(intervalSecond);
-            return insertText(textToShow, $containerToUse, 50, 2);
+            return insertText(textToShow, $containerToUse, 50, 0);
         })
         .then(() => {
             let textToShow = 'Majo Energy Audit';
 
             $containerToUse = $body.find('.js-text-proj-1');
             clearInterval(intervalSecond);
-            return insertText(textToShow, $containerToUse, 50, 2);
+            return insertText(textToShow, $containerToUse, 50, 0);
         })
         .then(() => {
             let textToShow = 'Majo Managment Platform';
 
             $containerToUse = $body.find('.js-text-proj-2');
             clearInterval(intervalSecond);
-            return insertText(textToShow, $containerToUse, 50, 2);
+            return insertText(textToShow, $containerToUse, 50, 0);
         })
         .then(() => {
             let textToShow = 'More information on them can be found on the projects tab.';
 
             $containerToUse = $body.find('.js-text-more-info');
             clearInterval(intervalSecond);
-            return insertText(textToShow, $containerToUse, 50, 2);
+            return insertText(textToShow, $containerToUse, 50, 0);
         });
 }
 
