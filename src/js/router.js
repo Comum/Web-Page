@@ -13,7 +13,6 @@ import {
     initContentContainer,
     loadPageContent,
     loadContentSequence,
-    loadCompanyProjs,
     loadNewImage
 } from './effects.js';
 import { containerFadeOut, containerFadeIn } from './fades'; 

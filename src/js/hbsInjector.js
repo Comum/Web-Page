@@ -60,7 +60,7 @@ const projectWrapper = `
     </div>
 `;
 
-function getProgrammerQuote() {
+const getProgrammerQuote = () => {
     let quote;
     let $quoteContainer = $body.find('.js-quote-container');
 
@@ -75,27 +75,27 @@ function getProgrammerQuote() {
             $quoteContainer.html(quote);
         }
     });
-}
+};
 
-function addProjsContainer() {
+const addProjsContainer = () => {
     let $container = $body.find('.js-content-section');
 
     return new Promise((resolve, reject) => {
         $container.html(projsContainer);
         resolve();
     });
-}
+};
 
-function cleanSection(section) {
+const cleanSection = section => {
     let $container = $body.find('.' + section);
 
     return new Promise((resolve, reject) => {
         $container.empty();
         resolve();
     });
-}
+};
 
-function addWrapper(wrapper) {
+const addWrapper = wrapper => {
     return new Promise((resolve, reject) => {
         let $container = $body.find('.js-content-section');
         let html = ``;
@@ -114,9 +114,9 @@ function addWrapper(wrapper) {
         $container.html(html);
         resolve();
     });
-}
+};
 
-function initProjectParameters(projID) {
+const initProjectParameters = projID => {
     let companyID = projID.split('-')[0];
     let infoProject;
     let $container = $body.find('.js-content-section');
@@ -166,168 +166,182 @@ function initProjectParameters(projID) {
         $projectImages.attr('data-image-name', imageName);
         $projectImages.css('background-image', 'url(' + imagePath + ')');
     });
-}
+};
 
-module.exports = {
-    addAboutButton: function (buttonContent = '', classPositioning = '') {
-        $container.append(escButton);
-    },
-    addArrowsContainer: function (buttonContent = '', classPositioning = '') {
-        $container.append(arrowsContainer);
-    },
-    loadContactsContent: function () {
-        return new Promise((resolve, reject) => {
-            const html = `
-                <div id="contactContainer">
-                    <ul id="contactsListContainer">
-                        <li class="contactsListItem">
-                            For more information you can contact me using:
-                        </li>
-                        <li class="contactsListItem">
-                            <a href="mailto:miguel.rib.20@gmail.com" class="contactsListItem--myEmail" target="_top">My Email</a>
-                        </li>
-                        <li class="contactsListItem">
-                            <a href="https://www.linkedin.com/in/miguel-ribeiro-7bb32a110/" target="_blank">
-                                <i class="Icon Icon--linkedin"></i>
-                            </a>
-                        </li>
-                        <li class="contactsListItem">
-                            <a href="https://github.com/Comum/" target="_blank">
-                                <i class="Icon Icon--github"></i>
-                            </a>
-                        </li>
-                        <li class="contactsListItem">
-                            <p class="text-italic m-lr-12 js-quote-container"></p>
-                        </li>
-                    </ul>
-                </div>
-            `;
+const addAboutButton = (buttonContent = '', classPositioning = '') => {
+    $container.append(escButton);
+};
 
-            $body.find('.js-content-section').html(html);
-            resolve();
-        })
-        .then(() => {
-            getProgrammerQuote();
+const addArrowsContainer = (buttonContent = '', classPositioning = '') => {
+    $container.append(arrowsContainer);
+};
+
+const loadContactsContent = () => {
+    return new Promise((resolve, reject) => {
+        const html = `
+            <div id="contactContainer">
+                <ul id="contactsListContainer">
+                    <li class="contactsListItem">
+                        For more information you can contact me using:
+                    </li>
+                    <li class="contactsListItem">
+                        <a href="mailto:miguel.rib.20@gmail.com" class="contactsListItem--myEmail" target="_top">My Email</a>
+                    </li>
+                    <li class="contactsListItem">
+                        <a href="https://www.linkedin.com/in/miguel-ribeiro-7bb32a110/" target="_blank">
+                            <i class="Icon Icon--linkedin"></i>
+                        </a>
+                    </li>
+                    <li class="contactsListItem">
+                        <a href="https://github.com/Comum/" target="_blank">
+                            <i class="Icon Icon--github"></i>
+                        </a>
+                    </li>
+                    <li class="contactsListItem">
+                        <p class="text-italic m-lr-12 js-quote-container"></p>
+                    </li>
+                </ul>
+            </div>
+        `;
+
+        $body.find('.js-content-section').html(html);
+        resolve();
+    })
+    .then(() => {
+        getProgrammerQuote();
+    });
+};
+
+const loadProjsContent = () => {
+    let $container = $body.find('.js-content-section');
+
+    addProjsContainer()
+    .then(() => {
+        $.getJSON('../json/projects.json', function (data) {
+            let $projsContainer = $container.find('.js-projs-container');
+            let html = ``;
+            let companyWrapper = ``;
+            let companyID;
+
+            $.each(data, function( key, val ) {
+                companyID = $(this)[0].companyID;
+
+                if ($(this)[0].companyID === 'comp_personal') {
+                    companyWrapper = `
+                        <div class="companyLogo companyOnlyText cursor-pointer no-select-text js-company-logo"
+                             data-company-id="${companyID}">
+                            <span class="text-center">Personal Projects</span>
+                        </div>
+                    `;
+                } else {
+                    companyWrapper = `
+                        <div class="companyLogo companyLogoImage companyLogo--${companyID} cursor-pointer no-select-text js-company-logo"
+                             data-company-id="${companyID}">
+                        </div>
+                    `;
+                }
+
+                html = html + companyWrapper;
+            });
+
+            $projsContainer.html(html);
         });
-    },
-    loadProjsContent: function () {
-        let $container = $body.find('.js-content-section');
+    });
+};
 
-        addProjsContainer()
-        .then(() => {
-            $.getJSON('../json/projects.json', function (data) {
-                let $projsContainer = $container.find('.js-projs-container');
-                let html = ``;
-                let companyWrapper = ``;
-                let companyID;
+const loadCompanyContent = companyID => {
+    let companyProjects;
 
-                $.each(data, function( key, val ) {
-                    companyID = $(this)[0].companyID;
+    return cleanSection('js-content-section')
+    .then(() => {
+        return addWrapper('company');
+    })
+    .then(() => {
+        $.getJSON('json/projects.json', function(data) {
+            let $container = $body.find('.js-company-projects');
+            let $companyLogoContainer = $body.find('.js-company-logo-image');
+            let $companyNameContainer = $body.find('.js-company-logo-name');
+            let html = ``;
+            let projectHtml;
+            let companyNameClass = 'companyNameImage--';
+            let companySite;
 
-                    if ($(this)[0].companyID === 'comp_personal') {
-                        companyWrapper = `
-                            <div class="companyLogo companyOnlyText cursor-pointer no-select-text js-company-logo"
-                                 data-company-id="${companyID}">
-                                <span class="text-center">Personal Projects</span>
-                            </div>
-                        `;
+            $.each(data, function( key, val ) {
+                if (companyID === this.companyID) {
+
+                    if (companyID === 'comp_personal') {
+                        companyNameClass = 'display-none';
                     } else {
-                        companyWrapper = `
-                            <div class="companyLogo companyLogoImage companyLogo--${companyID} cursor-pointer no-select-text js-company-logo"
-                                 data-company-id="${companyID}">
-                            </div>
-                        `;
+                        companyNameClass = companyNameClass + this.companyName.split(' ').join('_');
                     }
 
-                    html = html + companyWrapper;
-                });
+                    companySite = this.companySite;
+                    $companyLogoContainer
+                        .addClass(companyNameClass)
+                        .attr('href', companySite);
+                    $companyNameContainer.text(this.companyName);
 
-                $projsContainer.html(html);
-            });
-        });
-    },
-    loadCompanyContent: function(companyID) {
-        let companyProjects;
+                    this.projects.forEach(project => {
+                        let projectName = project.projectName;
+                        let projectImage;
+                        let projectPlaceHolder = '';
+                        let projectID = project.projectID;
 
-        return cleanSection('js-content-section')
-        .then(() => {
-            return addWrapper('company');
-        })
-        .then(() => {
-            $.getJSON('json/projects.json', function(data) {
-                let $container = $body.find('.js-company-projects');
-                let $companyLogoContainer = $body.find('.js-company-logo-image');
-                let $companyNameContainer = $body.find('.js-company-logo-name');
-                let html = ``;
-                let projectHtml;
-                let companyNameClass = 'companyNameImage--';
-                let companySite;
-
-                $.each(data, function( key, val ) {
-                    if (companyID === this.companyID) {
-
-                        if (companyID === 'comp_personal') {
-                            companyNameClass = 'display-none';
+                        if (project.projectImages.length) {
+                            projectImage = 'projectImage--' + project.projectImages[0].split('.')[0];
                         } else {
-                            companyNameClass = companyNameClass + this.companyName.split(' ').join('_');
+                            projectImage = 'projectWithNoImage';
+                            projectPlaceHolder = 'Image not available';
                         }
 
-                        companySite = this.companySite;
-                        $companyLogoContainer
-                            .addClass(companyNameClass)
-                            .attr('href', companySite);
-                        $companyNameContainer.text(this.companyName);
+                        projectHtml = `
+                            <div class="companyProjectBlockArea text-color js-company-project-block-area"
+                                 data-project-id="${projectID}">
+                                <div class="companyProjectImage ${projectImage}">${projectPlaceHolder}</div>
+                                <div class="companyProjectName">${projectName}</div>
+                            </div>
+                        `;
 
-                        this.projects.forEach(project => {
-                            let projectName = project.projectName;
-                            let projectImage;
-                            let projectPlaceHolder = '';
-                            let projectID = project.projectID;
-
-                            if (project.projectImages.length) {
-                                projectImage = 'projectImage--' + project.projectImages[0].split('.')[0];
-                            } else {
-                                projectImage = 'projectWithNoImage';
-                                projectPlaceHolder = 'Image not available';
-                            }
-
-                            projectHtml = `
-                                <div class="companyProjectBlockArea text-color js-company-project-block-area"
-                                     data-project-id="${projectID}">
-                                    <div class="companyProjectImage ${projectImage}">${projectPlaceHolder}</div>
-                                    <div class="companyProjectName">${projectName}</div>
-                                </div>
-                            `;
-
-                            html = html + projectHtml;
-                        });
-                    }
-                });
-                $container.html(html);
+                        html = html + projectHtml;
+                    });
+                }
             });
+            $container.html(html);
         });
-    },
-    loadProjContent: function(detailID) {
-        return cleanSection('js-content-section')
-        .then(() => {
-            return addWrapper('project'); 
-        })
-        .then(() => {
-            initProjectParameters(detailID);
-        });
-    },
-    addSlide: function(slideNumber) {
-        switch(slideNumber) {
-            case 0: loadSlideZero();
-                break;
-            case 1: loadSlideOne();
-                break;
-            case 2: loadSlideTwo();
-                break;
-            case 3: loadSlideThree();
-                break;
-            default:
-                console.log('Slide not found');
-        }
+    });
+};
+
+const loadProjContent = detailID => {
+    return cleanSection('js-content-section')
+    .then(() => {
+        return addWrapper('project'); 
+    })
+    .then(() => {
+        initProjectParameters(detailID);
+    });
+};
+
+const addSlide = slideNumber => {
+    switch(slideNumber) {
+        case 0: loadSlideZero();
+            break;
+        case 1: loadSlideOne();
+            break;
+        case 2: loadSlideTwo();
+            break;
+        case 3: loadSlideThree();
+            break;
+        default:
+            console.log('Slide not found');
     }
+};
+
+export {
+    addAboutButton,
+    addArrowsContainer,
+    loadContactsContent,
+    loadProjsContent,
+    loadCompanyContent,
+    loadProjContent,
+    addSlide,
 }
