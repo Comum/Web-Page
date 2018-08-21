@@ -73,7 +73,7 @@ const slideThree = `
     </div>
 `;
 
-function moveBlinkerToNextLine() {
+const moveBlinkerToNextLine = () => {
     let $blinker = $container.find('.js-dash-blinker');
     let blinkerContainerNumber = parseInt($blinker.parent().attr('data-text-line'), 10);
     let newBlinkerContainerNumber;
@@ -85,13 +85,13 @@ function moveBlinkerToNextLine() {
     $blinker.appendTo($('.js-text-line[data-text-line=' + newBlinkerContainerNumber + ']'));
 }
 
-function replaceTextWithAnchor($containerToUse, textToReplace, anchorPath) {
+const replaceTextWithAnchor = ($containerToUse, textToReplace, anchorPath) => {
     let containerContent = $containerToUse.text().replace(textToReplace, '<a href="' + anchorPath + '" target="_blank" class="anchorDefaultStyle">' + textToReplace + '</a>');
 
     $containerToUse.empty().html(containerContent);
 }
 
-function loadSlide(slide) {
+const loadSlide = slide => {
     return new Promise((resolve, reject) => {
         $container.append(slide);
         resolve();
@@ -99,7 +99,7 @@ function loadSlide(slide) {
 }
 
 // use another variable as interval
-function insertText(text, $container, delay, moveBlinker) {
+const insertText = (text, $container, delay, moveBlinker) => {
     return new Promise((resolve, reject) => {
         let chars = text.split('');
         let i = 0;
@@ -122,7 +122,7 @@ function insertText(text, $container, delay, moveBlinker) {
     });
 }
 
-function loadSlideOneText(text) {
+const loadSlideOneText = text => {
     let $lines = $container.find('.js-text-container');
     let i = 0;
 
@@ -149,7 +149,7 @@ function loadSlideOneText(text) {
         });
 }
 
-function getMyAge() {
+const getMyAge = () => {
     let date = new Date();
     let age;
 
@@ -162,7 +162,7 @@ function getMyAge() {
     return age;
 }
 
-function slideOneSequence() {
+const slideOneSequence = () => {
     return loadSlide(slideOne)
         .then(() => {
             let age = getMyAge();
@@ -181,7 +181,7 @@ function slideOneSequence() {
         });
 }
 
-function slideTwoSequence() {
+const slideTwoSequence = () => {
     let $containerToUse;
 
     return loadSlide(slideTwo)
@@ -203,7 +203,7 @@ function slideTwoSequence() {
         });
 }
 
-function slideThreeSequence() {
+const slideThreeSequence = () => {
     let $containerToUse;
 
     return loadSlide(slideThree)
@@ -248,17 +248,25 @@ function slideThreeSequence() {
         });
 }
 
-module.exports = {
-    loadSlideZero: function () {
-        loadSlide(slideZero);
-    },
-    loadSlideOne: function () {
-        slideOneSequence();
-    },
-    loadSlideTwo: function () {
-        slideTwoSequence();
-    },
-    loadSlideThree: function () {
-        slideThreeSequence();
-    }
+const loadSlideZero = () => {
+    loadSlide(slideZero);
 };
+
+const loadSlideOne = () => {
+    slideOneSequence();
+};
+
+const loadSlideTwo = () => {
+    slideTwoSequence();
+};
+
+const loadSlideThree = () => {
+    slideThreeSequence();
+};
+
+export {
+    loadSlideZero,
+    loadSlideOne,
+    loadSlideTwo,
+    loadSlideThree,
+}
