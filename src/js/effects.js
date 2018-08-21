@@ -246,4 +246,4 @@ export {
     loadPageContent,
     loadContentSequence,
     loadNewImage,
-}
+};
