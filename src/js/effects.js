@@ -31,29 +31,29 @@ let $secondMenuContainer = $body.find(HOOK_CONTENT_AREA_CLASS);
 
 const ANIMATION_DELAY = 750;
 
-function resetWebPage() {
+const resetWebPage = () => {
     location.reload();
-}
+};
 
-function getBodyViewMode() {
+const getBodyViewMode = () => {
     return $body.attr(DATA_MENU_IN_VIEW);
-}
+};
 
-function slideNumber(newPageNumber) {
+const slideNumber = newPageNumber => {
     return new Promise((resolve, reject) => {
         $secondMenuContainer.attr(DATA_PAGE_NUMBER, newPageNumber);
         resolve();
     });
-}
+};
 
-function clearPreviousSlide() {
+const clearPreviousSlide = () => {
     return new Promise((resolve, reject) => {
         $secondMenuContainer.find('.js-slide-container').remove();
         resolve();
     });
-}
+};
 
-function updateSlideSequence(newPageNumber) {
+const updateSlideSequence = newPageNumber => {
     // js-slide-container
     return slideNumber(newPageNumber)
     .then(() => {
@@ -62,24 +62,24 @@ function updateSlideSequence(newPageNumber) {
     .then((resolve, reject) => {
         addSlide(newPageNumber);
     });
-}
+};
 
-function incrementPageNumber() {
+const incrementPageNumber = () => {
     let pageNumber = parseInt($secondMenuContainer.attr(DATA_PAGE_NUMBER), 10) + 1;
     
     updateSlideSequence(pageNumber);
-}
+};
 
-function decrementPageNumber() {
+const decrementPageNumber = () => {
     let pageNumber = $secondMenuContainer.attr(DATA_PAGE_NUMBER);
 
     if (pageNumber > 0) {
         pageNumber--;
         updateSlideSequence(pageNumber);
     }
-}
+};
 
-function closeScreen() {
+const closeScreen = () => {
     let $bottomOverlay = $secondMenuContainer.find(HOOK_IMAGE_BOTTOMOVERLAY);
     let $topOverlay = $secondMenuContainer.find(HOOK_IMAGE_TOPOVERLAY);
 
@@ -94,7 +94,7 @@ function closeScreen() {
             resolve();
         });
     });
-}
+};
 
 function openScreen() {
     let $bottomOverlay = $secondMenuContainer.find(HOOK_IMAGE_BOTTOMOVERLAY);
@@ -111,137 +111,139 @@ function openScreen() {
             resolve();
         });
     });
-}
-
-module.exports = {
-    addMarginToMainMenu: function () {
-        let $mainContainer = $body.find(HOOK_MAIN_MENU);
-
-        $mainContainer.animate({
-            'margin-top': '-' + $mainContainer.height() + 'px'
-        }, 1250, function () {
-            containerFadeIn(HOOK_CONTENT_AREA);
-        });
-    },
-    removeMarginToMainMenu: function () {
-        let $mainContainer = $body.find(HOOK_MAIN_MENU);
-        
-        containerFadeOut(HOOK_CONTENT_AREA)
-        .then(() => {
-            $mainContainer.animate({
-                'margin-top': '0px'
-            }, 1250);
-        })
-    },
-    containerFadeIn: function (container) {
-        return new Promise((resolve, reject) => {
-            $body.find('.' + container).fadeTo('slow', 1, () => {
-                resolve();
-            });
-        });
-    },
-    containerFadeOut: function (container) {
-        return new Promise((resolve, reject) => {
-            $body.find('.' + container).fadeTo('slow', 0, () => {
-                resolve();
-            });
-        });
-    },
-    initAboutMenuFunctionality: function () {
-        return new Promise((resolve, reject) => {
-            addAboutButton();
-            addArrowsContainer();
-            addSlide(0);
-
-            resolve();
-        });
-    },
-    addButtonsFunctionality: function () {
-        $secondMenuContainer
-            .on('click', HOOK_CLOSE_ABOUT_AREA, resetWebPage)
-            .on('click', HOOK_ABOUT_LEFT_ARROW, decrementPageNumber)
-            .on('click', HOOK_ABOUT_RIGHT_ARROW, incrementPageNumber);
-
-        $(document).keydown(function (e) {
-            if (getBodyViewMode() === 'about') {
-                if(e.keyCode === 27) {
-                    $secondMenuContainer.find(HOOK_CLOSE_ABOUT_AREA).addClass(CLASS_BUTTON_BEING_PRESSED);
-                } else if (e.keyCode === 37) {
-                    $secondMenuContainer.find(HOOK_ABOUT_LEFT_ARROW).addClass(CLASS_BUTTON_BEING_PRESSED);
-                    decrementPageNumber();
-                } else if (e.keyCode === 39) {
-                    $secondMenuContainer.find(HOOK_ABOUT_RIGHT_ARROW).addClass(CLASS_BUTTON_BEING_PRESSED);
-                    incrementPageNumber();
-                }
-            }
-        });
-
-        $(document).keyup(function (e) {
-            if (getBodyViewMode() === 'about') {
-                if(e.keyCode === 27) {
-                    $secondMenuContainer.find(HOOK_CLOSE_ABOUT_AREA).removeClass(CLASS_BUTTON_BEING_PRESSED);
-                    resetWebPage();
-                } else if (e.keyCode === 37) {
-                    $secondMenuContainer.find(HOOK_ABOUT_LEFT_ARROW).removeClass(CLASS_BUTTON_BEING_PRESSED);
-                } else if (e.keyCode === 39) {
-                    $secondMenuContainer.find(HOOK_ABOUT_RIGHT_ARROW).removeClass(CLASS_BUTTON_BEING_PRESSED);
-                }
-            }
-        });
-    },
-    initContentContainer: function (menuView, areaToEmpty = HOOK_CONTENT_AREA_CLASS) {
-        return new Promise((resolve, reject) => {
-            $secondMenuContainer = $body.find(areaToEmpty).empty();
-            $body.attr(DATA_MENU_IN_VIEW, menuView);
-
-            resolve();
-        });
-    },
-    loadPageContent: function (pageToLoad, detailID = '') {
-        return new Promise((resolve, reject) => {
-            switch(pageToLoad) {
-                case 'contacts':
-                    loadContactsContent();
-                    break;
-                case 'projs':
-                    loadProjsContent();
-                    break;
-                case 'companyProjs':
-                    loadCompanyContent(detailID);
-                    break;
-                case 'projDetails':
-                    loadProjContent(detailID);
-                    break;
-                default:
-                    console.log('404 Page not found');
-            }
-            resolve();
-        });
-    },
-    loadContentSequence: function (contentToLoad) {
-        return containerFadeOut(HOOK_CONTENT_SECTION)
-        .then(() => {
-            return module.exports.initContentContainer('second', HOOK_CONTENT_SECTION_CLASS)
-        })
-        .then(() => {
-            return module.exports.loadPageContent(contentToLoad);
-        })
-        .then(() => {
-            return containerFadeIn(HOOK_CONTENT_SECTION);
-        });
-    },
-    loadNewImage: function (newImageNumber, newImage, $container) {
-        return closeScreen()
-        .then(() => {
-            return new Promise((resolve, reject) => {
-                $container.attr(DATA_IMAGE_NUMBER, newImageNumber);
-                $container.css('background-image', 'url(' + newImage + ')');
-
-                resolve();
-            });
-        })
-        .then(() => {
-            return openScreen();
-        });
-    }
 };
+
+const addMarginToMainMenu = () => {
+    let $mainContainer = $body.find(HOOK_MAIN_MENU);
+
+    $mainContainer.animate({
+        'margin-top': '-' + $mainContainer.height() + 'px'
+    }, 1250, function () {
+        containerFadeIn(HOOK_CONTENT_AREA);
+    });
+};
+
+const removeMarginToMainMenu = () => {
+    let $mainContainer = $body.find(HOOK_MAIN_MENU);
+    
+    containerFadeOut(HOOK_CONTENT_AREA)
+    .then(() => {
+        $mainContainer.animate({
+            'margin-top': '0px'
+        }, 1250);
+    })
+};
+
+const initAboutMenuFunctionality = () => {
+    return new Promise((resolve, reject) => {
+        addAboutButton();
+        addArrowsContainer();
+        addSlide(0);
+
+        resolve();
+    });
+};
+
+const addButtonsFunctionality = () => {
+    $secondMenuContainer
+        .on('click', HOOK_CLOSE_ABOUT_AREA, resetWebPage)
+        .on('click', HOOK_ABOUT_LEFT_ARROW, decrementPageNumber)
+        .on('click', HOOK_ABOUT_RIGHT_ARROW, incrementPageNumber);
+
+    $(document).keydown(function (e) {
+        if (getBodyViewMode() === 'about') {
+            if(e.keyCode === 27) {
+                $secondMenuContainer.find(HOOK_CLOSE_ABOUT_AREA).addClass(CLASS_BUTTON_BEING_PRESSED);
+            } else if (e.keyCode === 37) {
+                $secondMenuContainer.find(HOOK_ABOUT_LEFT_ARROW).addClass(CLASS_BUTTON_BEING_PRESSED);
+                decrementPageNumber();
+            } else if (e.keyCode === 39) {
+                $secondMenuContainer.find(HOOK_ABOUT_RIGHT_ARROW).addClass(CLASS_BUTTON_BEING_PRESSED);
+                incrementPageNumber();
+            }
+        }
+    });
+
+    $(document).keyup(function (e) {
+        if (getBodyViewMode() === 'about') {
+            if(e.keyCode === 27) {
+                $secondMenuContainer.find(HOOK_CLOSE_ABOUT_AREA).removeClass(CLASS_BUTTON_BEING_PRESSED);
+                resetWebPage();
+            } else if (e.keyCode === 37) {
+                $secondMenuContainer.find(HOOK_ABOUT_LEFT_ARROW).removeClass(CLASS_BUTTON_BEING_PRESSED);
+            } else if (e.keyCode === 39) {
+                $secondMenuContainer.find(HOOK_ABOUT_RIGHT_ARROW).removeClass(CLASS_BUTTON_BEING_PRESSED);
+            }
+        }
+    });
+};
+
+const initContentContainer = (menuView, areaToEmpty = HOOK_CONTENT_AREA_CLASS) => {
+    return new Promise((resolve, reject) => {
+        $secondMenuContainer = $body.find(areaToEmpty).empty();
+        $body.attr(DATA_MENU_IN_VIEW, menuView);
+
+        resolve();
+    });
+};
+
+const loadPageContent = (pageToLoad, detailID = '') => {
+    return new Promise((resolve, reject) => {
+        switch(pageToLoad) {
+            case 'contacts':
+                loadContactsContent();
+                break;
+            case 'projs':
+                loadProjsContent();
+                break;
+            case 'companyProjs':
+                loadCompanyContent(detailID);
+                break;
+            case 'projDetails':
+                loadProjContent(detailID);
+                break;
+            default:
+                console.log('404 Page not found');
+        }
+        resolve();
+    });
+};
+
+const loadContentSequence = contentToLoad => {
+    return containerFadeOut(HOOK_CONTENT_SECTION)
+    .then(() => {
+        return module.exports.initContentContainer('second', HOOK_CONTENT_SECTION_CLASS)
+    })
+    .then(() => {
+        return module.exports.loadPageContent(contentToLoad);
+    })
+    .then(() => {
+        return containerFadeIn(HOOK_CONTENT_SECTION);
+    });
+};
+
+const loadNewImage = (newImageNumber, newImage, $container) => {
+    return closeScreen()
+    .then(() => {
+        return new Promise((resolve, reject) => {
+            $container.attr(DATA_IMAGE_NUMBER, newImageNumber);
+            $container.css('background-image', 'url(' + newImage + ')');
+
+            resolve();
+        });
+    })
+    .then(() => {
+        return openScreen();
+    });
+};
+
+export {
+    addMarginToMainMenu,
+    removeMarginToMainMenu,
+    initAboutMenuFunctionality,
+    addButtonsFunctionality,
+    initContentContainer,
+    loadPageContent,
+    loadContentSequence,
+    loadNewImage,
+}
