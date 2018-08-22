@@ -65,7 +65,7 @@ const getProgrammerQuote = () => {
     let $quoteContainer = $body.find('.js-quote-container');
 
     $.ajax({
-        url: 'http://cors-proxy.htmldriven.com/?url=http://thoughtsoncoding.com/api/1.0/random.json',
+        url: 'https://cors-proxy.htmldriven.com/?url=http://thoughtsoncoding.com/api/1.0/random.json',
         error: function () {
             quote = '"Insert cheeky quote here."';
             $quoteContainer.html(quote);
