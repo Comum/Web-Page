@@ -92,7 +92,7 @@ const replaceTextWithAnchor = ($containerToUse, textToReplace, anchorPath) => {
 }
 
 const loadSlide = slide => {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
         $container.append(slide);
         resolve();
     });
@@ -100,7 +100,7 @@ const loadSlide = slide => {
 
 // use another variable as interval
 const insertText = (text, $container, delay, moveBlinker) => {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
         let chars = text.split('');
         let i = 0;
         let wordsLeft = chars.length;

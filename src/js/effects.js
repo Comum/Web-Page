@@ -8,6 +8,7 @@ import {
     addSlide
 } from './hbsInjector.js';
 import { containerFadeIn, containerFadeOut } from './fades.js';
+import SlideController from './slides/slidesController';
 
 const HOOK_CONTENT_AREA = 'js-content-area';
 const HOOK_CONTENT_AREA_CLASS = '.' + HOOK_CONTENT_AREA;
@@ -25,6 +26,8 @@ const CLASS_BUTTON_BEING_PRESSED = 'buttonBeingPressed';
 const DATA_MENU_IN_VIEW = 'data-menu-in-view';
 const DATA_PAGE_NUMBER = 'data-page-number';
 const DATA_IMAGE_NUMBER = 'data-image-number';
+
+let Slides = new SlideController();
 
 let $body = $('body');
 let $secondMenuContainer = $body.find(HOOK_CONTENT_AREA_CLASS);
@@ -60,14 +63,18 @@ const updateSlideSequence = newPageNumber => {
         return clearPreviousSlide();
     })
     .then((resolve, reject) => {
-        addSlide(newPageNumber);
+        // addSlide(newPageNumber);
+        Slides.loadSlide(newPageNumber);
     });
 };
 
 const incrementPageNumber = () => {
-    let pageNumber = parseInt($secondMenuContainer.attr(DATA_PAGE_NUMBER), 10) + 1;
+    let pageNumber = parseInt($secondMenuContainer.attr(DATA_PAGE_NUMBER), 10);
     
-    updateSlideSequence(pageNumber);
+    if (pageNumber < Slides.getSlidesLength()) {
+        pageNumber += 1;
+        updateSlideSequence(pageNumber);
+    }
 };
 
 const decrementPageNumber = () => {
@@ -83,7 +90,7 @@ const closeScreen = () => {
     let $bottomOverlay = $secondMenuContainer.find(HOOK_IMAGE_BOTTOMOVERLAY);
     let $topOverlay = $secondMenuContainer.find(HOOK_IMAGE_TOPOVERLAY);
 
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
         $bottomOverlay.animate({
             bottom: '0'
         }, ANIMATION_DELAY);
@@ -100,7 +107,7 @@ function openScreen() {
     let $bottomOverlay = $secondMenuContainer.find(HOOK_IMAGE_BOTTOMOVERLAY);
     let $topOverlay = $secondMenuContainer.find(HOOK_IMAGE_TOPOVERLAY);
 
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
         $bottomOverlay.animate({
             bottom: '-50%'
         }, ANIMATION_DELAY);
@@ -135,7 +142,7 @@ const removeMarginToMainMenu = () => {
 };
 
 const initAboutMenuFunctionality = () => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         addAboutButton();
         addArrowsContainer();
         addSlide(0);
@@ -212,10 +219,10 @@ const loadPageContent = (pageToLoad, detailID = '') => {
 const loadContentSequence = contentToLoad => {
     return containerFadeOut(HOOK_CONTENT_SECTION)
     .then(() => {
-        return module.exports.initContentContainer('second', HOOK_CONTENT_SECTION_CLASS)
+        return initContentContainer('second', HOOK_CONTENT_SECTION_CLASS)
     })
     .then(() => {
-        return module.exports.loadPageContent(contentToLoad);
+        return loadPageContent(contentToLoad);
     })
     .then(() => {
         return containerFadeIn(HOOK_CONTENT_SECTION);

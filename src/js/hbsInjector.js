@@ -250,8 +250,6 @@ const loadProjsContent = () => {
 };
 
 const loadCompanyContent = companyID => {
-    let companyProjects;
-
     return cleanSection('js-content-section')
     .then(() => {
         return addWrapper('company');
@@ -322,7 +320,9 @@ const loadProjContent = detailID => {
 };
 
 const addSlide = slideNumber => {
-    switch(slideNumber) {
+    console.log(slideNumber);
+
+    /*switch(slideNumber) {
         case 0: loadSlideZero();
             break;
         case 1: loadSlideOne();
@@ -333,7 +333,7 @@ const addSlide = slideNumber => {
             break;
         default:
             console.log('Slide not found');
-    }
+    }*/
 };
 
 export {

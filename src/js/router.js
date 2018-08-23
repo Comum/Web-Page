@@ -72,7 +72,7 @@ class Router {
                     addMarginToMainMenu();
                 });
             } else {
-                initContentContainer('second', HOOK_CONTENT_SECTION_CLASS)
+                return initContentContainer('second', HOOK_CONTENT_SECTION_CLASS)
                 .then(() => {
                     addMarginToMainMenu();
                     return loadPageContent(id);
