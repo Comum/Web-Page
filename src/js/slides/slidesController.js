@@ -17,14 +17,9 @@ class SlideController {
         const slideContent = slides[(nr - 1)].slide;
 
         return containerFadeOut(HOOK_CONTENT_AREA)
-        .then(resolve => {
+        .then(() => {
             $body.find(`.${HOOK_SLIDE_CONTAINER}`).remove();
-            resolve();
-        })
-        .then(resolve => {
             $container.append(slideContent);
-        })
-        .then(resolve => {
             return containerFadeIn(HOOK_CONTENT_AREA);
         });
     }
