@@ -58,8 +58,6 @@ class Router {
         const id = $(this).attr('id');
 
         let menuState = $body.attr(DATA_MENU_IN_VIEW);
-        let $contentArea;
-        let nameClicked = false;
 
         if (menuState === 'first') {
             if (id === 'about') {
@@ -81,7 +79,6 @@ class Router {
         } else if (menuState === 'second') {
             switch(id) {
                 case 'name':
-                    nameClicked = true;
                     $body.attr(DATA_MENU_IN_VIEW, 'first');
                     removeMarginToMainMenu();
                     break;

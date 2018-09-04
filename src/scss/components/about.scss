@@ -43,7 +43,7 @@
 .slideZeroContainer {
     width: 80%;
     max-width: 400px;
-    height: 200px;
+    min-height: 248px;
 
     border: 1px solid $borderLoadedHover;
     color: $borderLoadedHover;
@@ -59,12 +59,26 @@
 }
 
 .instructionsArea {
-    width: 100%;
+    width: calc(100% - 32px);
     height: 100%;
+
+    padding: 0 16px;
+
+    text-align: left;
 
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+
+.intructionsTitle {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 32px; 
+}
+
+.instructionsEndStep {
+    margin-bottom: 8px;
 }
 
 .slideOneContainer {
@@ -148,14 +162,17 @@
     width: 300px;
     min-height: 200px;
 
-    padding: 8px 0 8px 16px;
+    padding: 0 8px;
 }
 
 .logoFeup {
     background-image: url("/src/img/logo_feup2.jpg");
-    background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+
+    @media screen and (max-width: $homeMenuBreakpoint) {
+        background-position: center;
+    }
 }
 
 .logoMajo {

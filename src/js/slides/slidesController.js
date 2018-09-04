@@ -14,7 +14,7 @@ class SlideController {
     }
 
     loadSlide(nr) {
-        const slideContent = slides[(nr - 1)].slide;
+        const slideContent = slides[nr].slide;
 
         return containerFadeOut(HOOK_CONTENT_AREA)
         .then(() => {

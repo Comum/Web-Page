@@ -62,7 +62,7 @@ const updateSlideSequence = newPageNumber => {
     .then(() => {
         return clearPreviousSlide();
     })
-    .then((resolve, reject) => {
+    .then(() => {
         // addSlide(newPageNumber);
         Slides.loadSlide(newPageNumber);
     });
@@ -70,8 +70,8 @@ const updateSlideSequence = newPageNumber => {
 
 const incrementPageNumber = () => {
     let pageNumber = parseInt($secondMenuContainer.attr(DATA_PAGE_NUMBER), 10);
-    
-    if (pageNumber < Slides.getSlidesLength()) {
+
+    if (pageNumber < Slides.getSlidesLength() - 1) {
         pageNumber += 1;
         updateSlideSequence(pageNumber);
     }
@@ -145,7 +145,8 @@ const initAboutMenuFunctionality = () => {
     return new Promise((resolve) => {
         addAboutButton();
         addArrowsContainer();
-        addSlide(0);
+        // addSlide(0);
+        Slides.loadSlide(0);
 
         resolve();
     });
