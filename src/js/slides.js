@@ -58,7 +58,7 @@ const slideTwo = `
 const slideThree = `
     <div class="slideThreeContainer js-slide-container opacity-0">
         <div class="logoMajo height-100 js-image-container">
-            <a href="https://www.majo.pt" target="_blank" class="display-block height-100"></a>
+            <a href="http://www.majo.pt" target="_blank" class="display-block height-100"></a>
         </div>
         <div class="slideThreeContentContainer text-color">
             <div class="slideThreeTextField text-color js-text-intro-1">
@@ -92,7 +92,7 @@ const replaceTextWithAnchor = ($containerToUse, textToReplace, anchorPath) => {
 }
 
 const loadSlide = slide => {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
         $container.append(slide);
         resolve();
     });
@@ -100,7 +100,7 @@ const loadSlide = slide => {
 
 // use another variable as interval
 const insertText = (text, $container, delay, moveBlinker) => {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
         let chars = text.split('');
         let i = 0;
         let wordsLeft = chars.length;
