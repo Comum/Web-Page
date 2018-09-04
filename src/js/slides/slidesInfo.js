@@ -57,6 +57,34 @@ const slides = [
             </div>
         `,
     },
+    {
+        slide: `
+            <div class="slideThreeContainer js-slide-container">
+                <div class="logoMajo height-100 js-image-container">
+                    <a href="https://www.majo.pt" target="_blank" class="display-block height-100"></a>
+                </div>
+                <div class="slideThreeContentContainer text-color">
+                    <div class="slideThreeTextField text-color js-text-intro-1">
+                        <span class="textLineContent js-text-container">
+                            In Octber 2014 I started working at a company named MAJO. I was hired, mainly, as a full stack developer but I ended up doing a bit of tech support as well. On both projects I was the only dev working on them :(
+                        </span>
+                    </div>
+                    <div class="slideThreeTextField text-color js-text-intro-2">
+                        My two big projects on MAJO were:
+                    </div>
+                    <div class="slideThreeTextField text-color text-large text-italic js-text-proj-1">
+                        Majo Energy Audit
+                    </div>
+                    <div class="slideThreeTextField text-color text-large text-italic js-text-proj-2">
+                        Majo Managment Platform
+                    </div>
+                    <div class="slideThreeTextField text-color js-text-more-info">
+                        More information on them can be found on the projects tab.
+                    </div>
+                </div>
+            </div>
+        `,
+    },
 ];
 
 export default slides;
