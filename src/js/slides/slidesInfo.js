@@ -61,7 +61,7 @@ const slides = [
         slide: `
             <div class="slideThreeContainer js-slide-container">
                 <div class="logoMajo height-100 js-image-container">
-                    <a href="https://www.majo.pt" target="_blank" class="display-block height-100"></a>
+                    <a href="http://www.majo.pt" target="_blank" class="display-block height-100"></a>
                 </div>
                 <div class="slideThreeContentContainer text-color">
                     <div class="slideThreeTextField text-color js-text-intro-1">
@@ -85,6 +85,35 @@ const slides = [
             </div>
         `,
     },
+    {
+        slide: `
+            <div class="slideFourContainer js-slide-container">
+                <div class="logoThisPlace width-200 height-100 js-image-container">
+                    <a href="https://thisplace.com/" target="_blank" class="display-block height-100"></a>
+                </div>
+                <div class="slideFourContentContainer">
+                    <div class="slideFourTextField text-color">
+                        In March of 2017 I moved to London to join a design agency. Here I focused on front end only and was integrated in a team :)
+                    </div>
+                    <div class="slideFourTextField text-color">
+                        My main project was working on <a href="https://www.delhaize.be/" target="_blank" class="anchorDefaultStyle">Delhaize</a> website. On our end it was a whitelabel website that was deployed in several countries.
+                    </div>
+                    <div class="slideFourTextField text-color">
+                        Working here also gave me the opportunity to enter 2 blockchain hackathons, the first one we actually won.
+                    </div>
+                    <div class="slideFourTextField text-color">
+                        <a href="http://breaktheblock.simplybusiness.co.uk/" target="_blank" class="anchorDefaultStyle">Break the block hackathon</a>
+                    </div>
+                    <div class="slideFourTextField text-color">
+                        <a href="https://www.blockchainweek.com/page/1287957/hackathon" target="_blank" class="anchorDefaultStyle">Papua New Guinea 2018 Hackathon</a>
+                    </div>
+                    <div class="slideThreeTextField text-color js-text-more-info">
+                        More information on them can be found on the projects tab.
+                    </div>
+                </div>
+            </di>
+        `,
+    }
 ];
 
 export default slides;
